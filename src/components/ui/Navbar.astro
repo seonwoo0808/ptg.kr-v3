@@ -1,0 +1,139 @@
+---
+import LocaleSelector from '../LocaleSelector.astro';
+import type { Locale } from '../../i18n/config';
+
+export interface NavbarItem {
+	label: string;
+	href: string;
+	active?: boolean;
+}
+
+interface Props {
+	title?: string;
+	homeHref?: string;
+	homeLabel?: string;
+	items: NavbarItem[];
+	label: string;
+	locale: Locale;
+	position?: 'absolute' | 'sticky' | 'static';
+	container?: 'wide' | 'contained';
+	collapseAt?: 'sm' | 'lg';
+}
+
+const {
+	title,
+	homeHref = '/',
+	homeLabel = 'Home',
+	items,
+	label,
+	locale,
+	position = 'static',
+	container = 'wide',
+	collapseAt = 'lg',
+} = Astro.props;
+---
+
+<header
+	class:list={['site-navbar', `site-navbar--${position}`]}
+	data-container={container}
+	data-collapse={collapseAt}
+>
+	<div class="site-navbar__inner">
+		<a class="site-navbar__brand" href={homeHref} aria-label={homeLabel}>
+			ptg<span>.</span>kr{title && <i aria-hidden="true">/</i>}{title && <small>{title}</small>}
+		</a>
+		<nav class="site-navbar__nav" aria-label={label}>
+			{items.map((item) => (
+				<a href={item.href} aria-current={item.active ? 'page' : undefined}>{item.label}</a>
+			))}
+		</nav>
+		<div class="site-navbar__end">
+			<LocaleSelector
+				{locale}
+				class="[--segmented-control-accent:var(--color-teal-400)] [--segmented-control-border:rgb(255_255_255_/_16%)] [--segmented-control-foreground:var(--color-zinc-100)] [--segmented-control-muted:var(--color-zinc-500)] [--segmented-control-font-size:.75rem]"
+			/>
+			<slot name="end" />
+		</div>
+	</div>
+</header>
+
+<style>
+	.site-navbar {
+		z-index: 30;
+		inset-inline: 0;
+		border-bottom: 1px solid rgb(255 255 255 / 10%);
+		color: var(--color-zinc-100);
+		background: rgb(9 9 11 / 88%);
+		backdrop-filter: blur(14px);
+	}
+
+	.site-navbar--absolute { position: absolute; background: transparent; backdrop-filter: none; }
+	.site-navbar--sticky { position: sticky; top: 0; }
+	.site-navbar--static { position: relative; }
+
+	.site-navbar__inner {
+		display: grid;
+		width: 100%;
+		height: 5.5rem;
+		align-items: center;
+		padding-inline: clamp(1.5rem, 5vw, 5rem);
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		gap: 1.5rem;
+	}
+
+	.site-navbar[data-container='contained'] .site-navbar__inner {
+		width: min(100% - 3rem, 76rem);
+		height: 4rem;
+		margin-inline: auto;
+		padding-inline: 0;
+	}
+
+	.site-navbar__brand {
+		justify-self: start;
+		color: inherit;
+		font-family: var(--font-wanted);
+		font-size: 1.3125rem;
+		font-weight: 800;
+		letter-spacing: -.05em;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.site-navbar__brand > span { color: var(--color-teal-400); }
+	.site-navbar__brand > i { margin-inline: .65rem; color: var(--color-teal-400); font-style: normal; font-weight: 500; }
+	.site-navbar__brand > small { color: inherit; font-size: inherit; font-weight: inherit; letter-spacing: inherit; }
+
+	.site-navbar__nav { display: flex; align-items: center; justify-content: center; gap: 1.5rem; }
+	.site-navbar__nav a {
+		position: relative;
+		padding-block: .5rem;
+		color: var(--color-zinc-400);
+		font-family: var(--font-wanted);
+		font-size: .75rem;
+		font-weight: 650;
+		letter-spacing: .12em;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: color 180ms ease;
+	}
+	.site-navbar__nav a::after { position: absolute; right: 0; bottom: .15rem; left: 0; height: 1px; content: ''; background: var(--color-teal-400); opacity: 0; transform: scaleX(.4); transition: opacity 180ms ease, transform 180ms ease; }
+	.site-navbar__nav a:hover,
+	.site-navbar__nav a:focus-visible,
+	.site-navbar__nav a[aria-current='page'] { color: var(--color-teal-400); }
+	.site-navbar__nav a:hover::after,
+	.site-navbar__nav a:focus-visible::after,
+	.site-navbar__nav a[aria-current='page']::after { opacity: 1; transform: scaleX(1); }
+	.site-navbar__end { display: flex; min-width: 0; align-items: center; justify-self: end; gap: 1rem; }
+
+	@media (max-width: 1023px) {
+		.site-navbar[data-collapse='lg'] .site-navbar__nav { display: none; }
+		.site-navbar[data-collapse='lg'] .site-navbar__inner { grid-template-columns: 1fr auto; }
+	}
+
+	@media (max-width: 639px) {
+		.site-navbar[data-collapse='sm'] .site-navbar__nav { display: none; }
+		.site-navbar[data-collapse='sm'] .site-navbar__inner { grid-template-columns: 1fr auto; }
+		.site-navbar[data-container='contained'] .site-navbar__inner { width: min(100% - 2rem, 76rem); }
+		.site-navbar__brand { font-size: 1.125rem; }
+	}
+</style>

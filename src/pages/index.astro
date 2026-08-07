@@ -1,0 +1,13 @@
+---
+import Landing from '../components/Landing.astro';
+import Layout from '../layouts/Layout.astro';
+import { locales } from '../i18n/config';
+---
+
+<Layout
+	locale="ko"
+	availableLocales={[...locales]}
+	themeColor="black"
+>
+	<Landing locale="ko" />
+</Layout>

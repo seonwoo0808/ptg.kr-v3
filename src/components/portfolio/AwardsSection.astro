@@ -1,0 +1,12 @@
+---
+import type { PortfolioMessages } from '../../i18n/types';
+import PortfolioSection from './PortfolioSection.astro';
+import RecordList from './RecordList.astro';
+
+interface Props { awards: PortfolioMessages['awards']; }
+const { awards } = Astro.props;
+---
+
+<PortfolioSection id="awards" index="04" eyebrow={awards.eyebrow} title={awards.title} surface>
+	<RecordList items={awards.items} empty={awards.empty} surface />
+</PortfolioSection>

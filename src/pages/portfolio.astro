@@ -1,0 +1,12 @@
+---
+import Portfolio from '../components/Portfolio.astro';
+import Layout from '../layouts/Layout.astro';
+import { locales } from '../i18n/config';
+import { getMessages } from '../i18n/messages';
+
+const t = getMessages('ko').portfolio;
+---
+
+<Layout locale="ko" availableLocales={[...locales]} title={t.meta.title} description={t.meta.description} themeColor="black">
+	<Portfolio locale="ko" />
+</Layout>

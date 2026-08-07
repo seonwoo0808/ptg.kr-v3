@@ -1,0 +1,12 @@
+---
+import BlogComingSoon from '../../components/BlogComingSoon.astro';
+import Layout from '../../layouts/Layout.astro';
+import { locales } from '../../i18n/config';
+import { getMessages } from '../../i18n/messages';
+
+const t = getMessages('en').blog;
+---
+
+<Layout locale="en" availableLocales={[...locales]} title={t.meta.title} description={t.meta.description} themeColor="#09090b">
+	<BlogComingSoon locale="en" />
+</Layout>

@@ -1,0 +1,13 @@
+---
+interface Props {
+	as?: 'article' | 'div' | 'section';
+	raised?: boolean;
+	class?: string;
+}
+
+const { as: Tag = 'div', raised = false, class: className } = Astro.props;
+---
+
+<Tag class:list={['ds-surface', raised && 'ds-surface--raised', className]}>
+	<slot />
+</Tag>

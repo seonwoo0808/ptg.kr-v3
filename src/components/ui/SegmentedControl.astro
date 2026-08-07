@@ -1,0 +1,140 @@
+---
+export interface SegmentItem {
+	value: string;
+	label: string;
+	href: string;
+	title?: string;
+}
+
+interface Props {
+	items: SegmentItem[];
+	value: string;
+	label: string;
+	class?: string;
+}
+
+const { items, value, label, class: className } = Astro.props;
+const activeIndex = Math.max(0, items.findIndex((item) => item.value === value));
+const style = `--segment-count: ${items.length}; --segment-index: ${activeIndex}`;
+---
+
+<nav class:list={['segmented-control', className]} aria-label={label} style={style}>
+	<span class="segmented-control__indicator" aria-hidden="true"></span>
+	{items.map((item) => {
+		const isActive = item.value === value;
+
+		return (
+			<a
+				class="segmented-control__item"
+				data-active={isActive ? 'true' : undefined}
+				href={item.href}
+				hreflang={item.value}
+				lang={item.value}
+				title={item.title}
+				aria-current={isActive ? 'page' : undefined}
+			>
+				<span>{item.label}</span>
+			</a>
+		);
+	})}
+</nav>
+
+<style>
+	.segmented-control {
+		--segment-foreground: var(--segmented-control-foreground, var(--foreground));
+		--segment-muted: var(--segmented-control-muted, var(--muted-foreground));
+		--segment-border: var(--segmented-control-border, var(--border));
+		--segment-accent: var(--segmented-control-accent, var(--brand, var(--primary)));
+		--segment-height: 2.125rem;
+		position: relative;
+		display: inline-grid;
+		min-width: max-content;
+		height: var(--segment-height);
+		grid-template-columns: repeat(var(--segment-count), minmax(3rem, 1fr));
+		isolation: isolate;
+		border-bottom: 1px solid var(--segment-border);
+		background: transparent;
+	}
+
+	.segmented-control__indicator {
+		position: absolute;
+		z-index: 1;
+		bottom: -1px;
+		left: 0;
+		width: calc(100% / var(--segment-count));
+		height: 2px;
+		background: var(--segment-accent);
+		transform: translateX(calc(var(--segment-index) * 100%));
+		transform-origin: center;
+		transition: transform 280ms cubic-bezier(.22, 1, .36, 1);
+	}
+
+	.segmented-control__item {
+		position: relative;
+		display: flex;
+		min-width: 0;
+		align-items: center;
+		justify-content: center;
+		padding: 0 .875rem;
+		color: var(--segment-muted);
+		font-family: var(--font-sans, 'Wanted Sans Variable', sans-serif);
+		font-size: var(--segmented-control-font-size, .75rem);
+		font-weight: 600;
+		letter-spacing: .12em;
+		line-height: 1;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+		transition: color 180ms ease, transform 160ms ease;
+	}
+
+	.segmented-control__item::after {
+		position: absolute;
+		right: .875rem;
+		bottom: 5px;
+		left: .875rem;
+		height: 1px;
+		content: '';
+		background: currentColor;
+		opacity: 0;
+		transform: scaleX(0);
+		transform-origin: center;
+		transition: opacity 160ms ease, transform 220ms cubic-bezier(.22, 1, .36, 1);
+	}
+
+	.segmented-control__item > span {
+		position: relative;
+		z-index: 1;
+	}
+
+	.segmented-control__item:hover:not([data-active='true']) {
+		color: var(--segment-foreground);
+	}
+
+	.segmented-control__item:hover:not([data-active='true'])::after {
+		opacity: .45;
+		transform: scaleX(1);
+	}
+
+	.segmented-control__item:active {
+		transform: translateY(1px);
+	}
+
+	.segmented-control__item:focus-visible {
+		outline: 1px solid var(--segment-accent);
+		outline-offset: -3px;
+	}
+
+	.segmented-control__item[data-active='true'] {
+		color: var(--segment-foreground);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.segmented-control__indicator,
+		.segmented-control__item,
+		.segmented-control__item::after {
+			transition-duration: .01ms;
+		}
+	}
+</style>

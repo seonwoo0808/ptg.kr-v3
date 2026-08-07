@@ -1,0 +1,19 @@
+---
+import type { PortfolioMessages, PortfolioProject } from '../../i18n/types';
+import PortfolioSection from './PortfolioSection.astro';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+	projects: PortfolioProject[];
+	labels: PortfolioMessages['labels'];
+}
+
+const { projects, labels } = Astro.props;
+---
+
+<PortfolioSection id="projects" index="03" eyebrow="Projects" title={labels.selectedWork}>
+	<span slot="meta" class="type-caption pb-2 text-zinc-500">{labels.projectCount}</span>
+	<div class="grid gap-6">
+		{projects.map((project) => <ProjectCard {project} {labels} />)}
+	</div>
+</PortfolioSection>

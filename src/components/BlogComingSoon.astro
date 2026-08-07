@@ -1,0 +1,61 @@
+---
+import Navbar from './ui/Navbar.astro';
+import type { Locale } from '../i18n/config';
+import { getMessages } from '../i18n/messages';
+import { getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const messages = getMessages(locale);
+const t = messages.blog;
+const navItems = [
+	{ label: t.navigation.portfolio, href: getLocalizedPath(locale, 'portfolio') },
+];
+---
+
+<main class="dark relative isolate flex min-h-screen flex-col overflow-hidden bg-zinc-950 font-sans text-zinc-100 selection:bg-teal-400 selection:text-zinc-950">
+	<div class="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_72%_38%,rgb(20_184_166_/_14%),transparent_32%),linear-gradient(to_bottom,var(--color-zinc-950),rgb(6_78_59_/_24%))]" aria-hidden="true"></div>
+	<div class="pointer-events-none absolute inset-0 -z-10 opacity-[.08] [background-image:linear-gradient(var(--color-white)_1px,transparent_1px),linear-gradient(90deg,var(--color-white)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,transparent,var(--color-black)_20%,var(--color-black)_78%,transparent)]" aria-hidden="true"></div>
+
+	<Navbar
+		title="Blog"
+		homeHref={getLocalizedPath(locale)}
+		homeLabel={t.navigation.home}
+		items={navItems}
+		label={messages.common.navigationLabel}
+		{locale}
+		position="static"
+	/>
+
+	<section class="mx-auto grid w-full max-w-[1200px] flex-1 place-items-center px-6 py-20 sm:px-10 lg:px-14" aria-labelledby="blog-title">
+		<div class="grid w-full items-end gap-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-20">
+			<div>
+				<p class="type-label mb-8 flex items-center gap-3 text-teal-400">
+					<span class="h-px w-9 bg-current" aria-hidden="true"></span>{t.status}
+				</p>
+				<h1 id="blog-title" class:list={['whitespace-pre-line text-[clamp(3.75rem,10vw,8.5rem)] font-bold leading-[.9] tracking-[-.075em] text-balance', locale === 'en' && 'uppercase']}>
+					{t.title}
+				</h1>
+			</div>
+
+			<aside class="border-l border-teal-400/55 pl-6 lg:mb-2 lg:pl-8" aria-label={t.note}>
+				<div class="mb-5 flex items-center gap-3 font-mono text-[.7rem] uppercase tracking-[.16em] text-teal-400">
+					<span class="relative flex h-2 w-2" aria-hidden="true">
+						<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-60 motion-reduce:animate-none"></span>
+						<span class="relative inline-flex h-2 w-2 rounded-full bg-teal-400"></span>
+					</span>
+					Coming soon
+				</div>
+				<p class="m-0 text-lg leading-relaxed text-zinc-200">{t.note}</p>
+			</aside>
+		</div>
+	</section>
+
+	<footer class="mx-auto flex w-full max-w-[1200px] flex-col gap-5 border-t border-white/10 px-6 py-7 sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-14">
+		<a class="type-label text-zinc-400 no-underline transition-colors hover:text-teal-400" href={getLocalizedPath(locale)}>{t.backHome} <span aria-hidden="true">↙</span></a>
+		<a class="type-label text-teal-400 no-underline transition-colors hover:text-teal-300" href={getLocalizedPath(locale, 'portfolio')}>{t.viewPortfolio} <span aria-hidden="true">→</span></a>
+	</footer>
+</main>

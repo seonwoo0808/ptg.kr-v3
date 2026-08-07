@@ -1,0 +1,26 @@
+---
+interface Props {
+	id: string;
+	index: string;
+	eyebrow: string;
+	title: string;
+	surface?: boolean;
+}
+
+const { id, index, eyebrow, title, surface = false } = Astro.props;
+const titleId = `${id}-title`;
+const hasMeta = Astro.slots.has('meta');
+---
+
+<section class:list={['border-t border-white/10', surface && 'bg-zinc-900']} {id} aria-labelledby={titleId}>
+	<div class="mx-auto max-w-[1440px] px-[clamp(24px,7vw,112px)] py-24 sm:py-32">
+		<header class:list={['mb-14 border-b border-white/10 pb-5', hasMeta && 'flex items-end justify-between gap-6']}>
+			<div>
+				<span class="type-label text-teal-400">{index} · {eyebrow}</span>
+				<h2 id={titleId} class="type-h2 mt-[22px] max-w-[880px]">{title}</h2>
+			</div>
+			{hasMeta && <slot name="meta" />}
+		</header>
+		<slot />
+	</div>
+</section>

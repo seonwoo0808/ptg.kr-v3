@@ -1,0 +1,201 @@
+---
+import {
+	siGo,
+	siKubernetes,
+	siOpencontainersinitiative,
+	siPostgresql,
+	siPython,
+	siTypescript,
+} from 'simple-icons';
+import LocaleSelector from './LocaleSelector.astro';
+import type { Locale } from '../i18n/config';
+import { getMessages } from '../i18n/messages';
+import { getLocalizedPath } from '../i18n/utils';
+import { buttonVariants } from './ui/button';
+import '../styles/landing.css';
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const messages = getMessages(locale);
+const t = messages.landing;
+
+const navigation = [
+	{ ...t.navigation.portfolio, href: getLocalizedPath(locale, 'portfolio') },
+	{ ...t.navigation.blog, href: getLocalizedPath(locale, 'blog') },
+];
+
+const techStack = [
+	{ icon: siGo, label: 'Go' },
+	{ icon: siPython, label: 'Python' },
+	{ icon: siTypescript, label: 'TypeScript' },
+	{ icon: siPostgresql, label: 'PostgreSQL' },
+	{ icon: siOpencontainersinitiative, label: 'OCI' },
+	{ icon: siKubernetes, label: 'Kubernetes' },
+];
+---
+
+<main class="landing dark scanline-overlay" data-landing>
+	<div class="dot-grid" aria-hidden="true"></div>
+	<div class="dot-grid dot-grid--hover" aria-hidden="true"></div>
+	<LocaleSelector class="locale-selector" locale={locale} />
+
+	<section class="hero" aria-labelledby="page-title">
+		<div class="role type-label fade-up">
+			<span class="role__light" aria-hidden="true"></span>
+			<span>{t.role}</span>
+		</div>
+
+		<div class="identity fade-up">
+			<p class="identity__name identity__name--desktop">{t.name}</p>
+			<h1 id="page-title" class="type-display">ptg<span>.</span>kr</h1>
+			<p class="identity__name identity__name--mobile">
+				<span aria-hidden="true"></span>
+				{t.name}
+			</p>
+		</div>
+
+		<p class="descriptor type-p3 fade-up">
+			{t.intro.line1}<br />
+			{t.intro.line2}<br class="descriptor-break" /> {t.intro.line3}
+		</p>
+
+		<nav class="navigation fade-up" aria-label={messages.common.navigationLabel}>
+			{navigation.map(({ label, description, href }) => (
+				<a class="nav-link" href={href}>
+					<span class="nav-link__copy">
+						<strong class="type-p3">{label}</strong>
+						<small class="type-caption">{description}</small>
+					</span>
+					<span class="nav-arrow" aria-hidden="true">→</span>
+				</a>
+			))}
+		</nav>
+	</section>
+
+	<aside class="dev-profile type-mono fade-up" aria-labelledby="dev-profile-title">
+		<header class="dev-profile__header">
+			<div>
+				<span class="eyebrow type-caption">{t.profile.eyebrow}</span>
+				<h2 id="dev-profile-title">{t.profile.title}</h2>
+			</div>
+			<span class="live-status type-caption"><span aria-hidden="true"></span> {t.profile.live}</span>
+		</header>
+
+		<section class="code-time" aria-labelledby="code-time-title">
+			<div class="section-label type-caption">
+				<span id="code-time-title">{t.profile.totalCodeTime}</span>
+				<span>{t.profile.since}</span>
+			</div>
+			<div class="code-time__value" aria-live="polite">
+				<strong data-code-hours>Loading...</strong>
+				<span>{t.profile.hoursUnit}</span>
+			</div>
+			<div class="code-time__meta">
+				<span>{t.profile.dailyAverage}</span>
+				<strong data-daily-average>Loading...</strong>
+			</div>
+		</section>
+
+		<section class="stack-cloud" aria-labelledby="stack-title">
+			<div class="section-label type-caption">
+				<span id="stack-title">{t.profile.coreStack}</span>
+			</div>
+			<ul class="stack-cloud__items">
+				{techStack.map(({ icon, label }) => (
+					<li style={`--tech-color: #${icon.hex}`} title={icon.title}>
+						<svg viewBox="0 0 24 24" role="img" aria-label={`${icon.title} logo`}>
+							<path d={icon.path}></path>
+						</svg>
+						<span>{label}</span>
+					</li>
+				))}
+			</ul>
+		</section>
+
+	</aside>
+
+	<footer class="footer">
+		<span class="status type-caption"><span aria-hidden="true">▶</span> {t.status}<span class="cursor-blink" aria-hidden="true">_</span></span>
+
+		<div class="socials" aria-label={messages.common.socialLinksLabel}>
+			<a class:list={[buttonVariants({ variant: 'outline', size: 'sm' }), 'social-link max-[767px]:size-9 max-[767px]:p-0']} href="https://github.com/seonwoo0808" aria-label="GitHub" title="GitHub">
+				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg>
+				<span>GitHub</span>
+			</a>
+			<a class:list={[buttonVariants({ variant: 'outline', size: 'sm' }), 'social-link max-[767px]:size-9 max-[767px]:p-0']} href="https://www.linkedin.com/in/seonwoo0808/" aria-label="LinkedIn" title="LinkedIn">
+				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.２２７ ２４ ２２．２７１V１．７２９C２４．００３ .７７４ ２３．２ ０ ２２．２２２ ０h．００３z" /></svg>
+				<span>LinkedIn</span>
+			</a>
+			<a class:list={[buttonVariants({ variant: 'outline', size: 'sm' }), 'social-link max-[767px]:size-9 max-[767px]:p-0']} href="mailto:me@ptg.kr" aria-label="Email" title="Email">
+				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm16 4-8 5-8-5v10h16V8Zm-.8-2H4.8l7.2 4.5L19.2 6Z" /></svg>
+				<span>Email</span>
+			</a>
+		</div>
+	</footer>
+</main>
+
+<script>
+	const landing = document.querySelector<HTMLElement>('[data-landing]');
+
+	if (landing) {
+		let frame = 0;
+		let x = 0;
+		let y = 0;
+
+		const renderPointer = () => {
+			landing.style.setProperty('--pointer-x', `${x}px`);
+			landing.style.setProperty('--pointer-y', `${y}px`);
+			frame = 0;
+		};
+
+		landing.addEventListener('pointermove', (event) => {
+			const rect = landing.getBoundingClientRect();
+			x = event.clientX - rect.left;
+			y = event.clientY - rect.top;
+			if (!frame) frame = requestAnimationFrame(renderPointer);
+		});
+
+		const codeHours = landing.querySelector<HTMLElement>('[data-code-hours]');
+		const dailyAverage = landing.querySelector<HTMLElement>('[data-daily-average]');
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		let animationFrame = 0;
+
+		const animateCodeHours = (target: number) => {
+			if (!codeHours || !Number.isFinite(target)) return;
+
+			window.cancelAnimationFrame(animationFrame);
+			const start = performance.now();
+			const duration = reducedMotion ? 0 : 850;
+
+			const render = (now: number) => {
+				const progress = duration === 0 ? 1 : Math.min((now - start) / duration, 1);
+				const easedProgress = 1 - Math.pow(1 - progress, 3);
+				const value = Math.round(target * easedProgress);
+				codeHours.textContent = value.toLocaleString('en-US');
+
+				if (progress < 1) animationFrame = window.requestAnimationFrame(render);
+			};
+
+			animationFrame = window.requestAnimationFrame(render);
+		};
+
+		fetch('https://wakatime.com/share/@PENTAGON/814f6085-90b4-4431-9901-1f49d0420024.json')
+			.then((response) => {
+				if (!response.ok) throw new Error('Unable to load WakaTime data');
+				return response.json();
+			})
+			.then((payload) => {
+				const totalSeconds = Number(payload.data.grand_total.total_seconds_including_other_language);
+				const hours = Math.floor(totalSeconds / 3600);
+				if (codeHours) codeHours.textContent = '0';
+				animateCodeHours(hours);
+				if (dailyAverage) {
+					dailyAverage.textContent = payload.data.grand_total.human_readable_daily_average_including_other_language;
+				}
+			})
+			.catch(() => undefined);
+	}
+</script>

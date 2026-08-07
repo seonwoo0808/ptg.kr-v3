@@ -1,0 +1,44 @@
+---
+import { Badge } from '../ui/badge';
+import type { PortfolioMessages, PortfolioProject } from '../../i18n/types';
+
+interface Props {
+	project: PortfolioProject;
+	labels: PortfolioMessages['labels'];
+}
+
+const { project, labels } = Astro.props;
+---
+
+<article class="group relative overflow-hidden border border-white/10 bg-gradient-to-br from-white/[.03] to-transparent transition duration-200 before:absolute before:left-0 before:top-0 before:h-px before:w-[120px] before:bg-teal-400 hover:-translate-y-[3px] hover:border-teal-400/35 motion-reduce:transition-none" id={project.id}>
+	<div class="grid grid-cols-[46px_1fr] items-center border-b border-white/10 px-6 py-[18px] sm:grid-cols-[70px_1fr]">
+		<span class="text-xs text-teal-400">/{project.index}</span>
+		<span class="type-caption text-zinc-500">{project.context}</span>
+	</div>
+	<div class="grid gap-[42px] px-6 pb-[38px] pt-8 lg:grid-cols-[minmax(0,1fr)_minmax(280px,.42fr)] lg:pt-11">
+		<div>
+			<h3 class="type-h3 mb-[14px]">{project.title}</h3>
+			<p class="type-p2 max-w-[700px] text-zinc-400 [word-break:keep-all]">{project.summary}</p>
+		</div>
+		<dl class="grid max-w-[440px] grid-cols-2 gap-5">
+			<div class="border-l border-white/10 pl-[18px]"><dt class="type-caption mb-[10px] text-zinc-500">{labels.role}</dt><dd class="m-0 text-xs leading-normal text-zinc-100 ko:text-[13px]">{project.role}</dd></div>
+			<div class="border-l border-white/10 pl-[18px]"><dt class="type-caption mb-[10px] text-zinc-500">{labels.period}</dt><dd class="m-0 text-xs leading-normal text-zinc-100 ko:text-[13px]">{project.period}</dd></div>
+		</dl>
+	</div>
+	<details class="group/details border-t border-white/10">
+		<summary class="type-caption flex h-[52px] cursor-pointer list-none items-center justify-end px-6 text-zinc-400 hover:text-teal-400 [&::-webkit-details-marker]:hidden">
+			<span class="flex items-center gap-3">
+				<i class="relative h-[13px] w-[13px]" aria-hidden="true"><span class="absolute left-0 top-1.5 h-px w-[13px] bg-current"></span><span class="absolute left-0 top-1.5 h-px w-[13px] rotate-90 bg-current transition-transform group-open/details:rotate-0"></span></i>
+				<span>{labels.openDetails}</span>
+			</span>
+		</summary>
+		<div class="grid gap-6 px-6 pb-[38px] pt-4 lg:grid-cols-3 lg:gap-9">
+			<div><span class="type-caption mb-[10px] block text-zinc-500">{labels.challenge}</span><p class="type-p3 mt-3 text-zinc-400 [word-break:keep-all]">{project.challenge}</p></div>
+			<div><span class="type-caption mb-[10px] block text-zinc-500">{labels.approach}</span><ol class="type-p3 mt-3 list-decimal space-y-[7px] pl-5 text-zinc-400 [word-break:keep-all]">{project.approach.map((item) => <li>{item}</li>)}</ol></div>
+			<div><span class="type-caption mb-[10px] block text-zinc-500">{labels.outcome}</span><p class="type-p3 mt-3 text-zinc-400 [word-break:keep-all]">{project.outcome}</p></div>
+		</div>
+	</details>
+	<ul class="m-0 flex list-none flex-wrap gap-[7px] px-6 pb-6">
+		{project.stack.map((tech) => <li><Badge variant="outline" className="border-b border-white/10 bg-transparent px-0 py-[7px] text-xs text-zinc-400">{tech}</Badge></li>)}
+	</ul>
+</article>

@@ -1,0 +1,81 @@
+---
+import AwardsSection from './portfolio/AwardsSection.astro';
+import CertificationsSection from './portfolio/CertificationsSection.astro';
+import EducationSection from './portfolio/EducationSection.astro';
+import ExperienceSection from './portfolio/ExperienceSection.astro';
+import ProjectsSection from './portfolio/ProjectsSection.astro';
+import { buttonVariants } from './ui/button';
+import Navbar from './ui/Navbar.astro';
+import type { Locale } from '../i18n/config';
+import { getMessages } from '../i18n/messages';
+import { getLocalizedPath } from '../i18n/utils';
+
+interface Props { locale: Locale; }
+
+const { locale } = Astro.props;
+const t = getMessages(locale).portfolio;
+const introLines = locale === 'en'
+	? t.hero.intro.split(',').map((line) => line.trim())
+	: [t.hero.intro];
+const navItems = [
+	{ label: t.navigation.education, href: '#education' },
+	{ label: t.navigation.experience, href: '#experience' },
+	{ label: t.navigation.projects, href: '#projects' },
+	{ label: t.navigation.awards, href: '#awards' },
+	{ label: t.navigation.certifications, href: '#certifications' },
+];
+
+---
+
+<main
+	id="top"
+	class="dark min-h-screen scroll-smooth bg-zinc-950 font-sans text-zinc-100 selection:bg-teal-400 selection:text-zinc-950"
+>
+	<Navbar title="Portfolio" homeHref={getLocalizedPath(locale)} homeLabel={t.navigation.home} items={navItems} label={getMessages(locale).common.navigationLabel} {locale} position="absolute" />
+
+	<section
+		class="relative isolate grid min-h-[clamp(680px,82svh,820px)] bg-gradient-to-b from-zinc-950 to-emerald-950/40 px-[clamp(24px,7vw,112px)] pb-[52px] pt-[160px] max-sm:min-h-[640px] max-sm:pb-10 max-sm:pt-[116px]"
+		aria-labelledby="portfolio-title"
+	>
+		<div
+			class="pointer-events-none absolute inset-0 -z-10 opacity-10 [background-image:linear-gradient(var(--color-white)_1px,transparent_1px),linear-gradient(90deg,var(--color-white)_1px,transparent_1px)] [background-size:88px_88px] [mask-image:linear-gradient(to_bottom,transparent,var(--color-black)_24%,var(--color-black)_72%,transparent)]"
+			aria-hidden="true"
+		></div>
+		<div class="self-center">
+			<p class="type-label mb-[34px] flex items-center gap-3 text-teal-400">
+				<span class="h-px w-[34px] bg-current"></span>{t.hero.eyebrow}
+			</p>
+			<h1 id="portfolio-title" class="type-hero">
+				Developer<span class="text-brand">,</span><br />Student<span class="text-brand pl-4">,</span><br />Junior Entrepreneur<span class="text-brand">,</span>
+			</h1>
+			<p class="type-p1 mt-[42px] max-w-[680px] text-zinc-400">
+				{introLines.map((line, index) => (
+					<span class="block sm:whitespace-nowrap">{line}{index < introLines.length - 1 ? ',' : ''}</span>
+				))}
+			</p>
+		</div>
+		<div class="mt-14 flex items-center justify-between self-end max-sm:items-end max-sm:gap-6">
+			<span class="flex items-center gap-[9px] text-xs uppercase leading-normal tracking-[.1em] text-zinc-400 max-sm:max-w-40">
+				<i class="h-1.5 w-1.5 shrink-0 rounded-full bg-teal-400 shadow-[0_0_10px] shadow-teal-400/70"></i>{t.hero.availability}
+			</span>
+			<a class="flex items-center gap-[14px] text-right text-xs uppercase tracking-[.12em] text-zinc-100 no-underline" href="#education">
+				{t.hero.scroll}<span class="text-base text-teal-400" aria-hidden="true">↓</span>
+			</a>
+		</div>
+	</section>
+
+	<EducationSection education={t.education} />
+	<ExperienceSection experience={t.experience} />
+	<ProjectsSection projects={t.projects} labels={t.labels} />
+	<AwardsSection awards={t.awards} />
+	<CertificationsSection certifications={t.certifications} />
+
+	<footer class="bg-teal-400 px-[clamp(24px,7vw,112px)] pb-8 pt-[84px] text-zinc-950 sm:pt-[110px]">
+		<div class="max-w-[970px]"><span class="type-label">{t.contact.eyebrow}</span><h2 class:list={['my-[22px] whitespace-pre-line text-[clamp(44px,7vw,104px)] leading-[.98] tracking-[-.07em] text-balance', locale === 'ko' ? 'font-bold' : 'font-semibold']}>{t.contact.title}</h2><p class="m-0 max-w-[620px] font-sans text-[17px] leading-[1.6]">{t.contact.description}</p></div>
+		<div class="my-[55px] mb-[100px] flex flex-col gap-[10px] sm:flex-row">
+			<a class={buttonVariants({ size: 'lg', className: 'h-auto min-w-0 justify-between border border-zinc-950/35 bg-zinc-950 px-[18px] py-4 text-teal-400 no-underline hover:bg-zinc-950 sm:min-w-[190px]' })} href="mailto:me@ptg.kr">{t.contact.email}<span aria-hidden="true">↗</span></a>
+			<a class={buttonVariants({ variant: 'outline', size: 'lg', className: 'h-auto min-w-0 justify-between border-zinc-950/35 bg-transparent px-[18px] py-4 text-zinc-950 no-underline hover:bg-zinc-950 hover:text-teal-400 sm:min-w-[190px]' })} href="https://github.com/seonwoo0808" target="_blank" rel="noreferrer">{t.contact.github}<span aria-hidden="true">↗</span></a>
+		</div>
+		<div class="type-caption flex justify-between gap-5 border-t border-zinc-950/25 pt-6"><span>© {new Date().getFullYear()} Seonwoo Jeong</span><a class="text-zinc-950 no-underline" href="#top">{t.contact.backToTop} ↑</a></div>
+	</footer>
+</main>

@@ -1,0 +1,27 @@
+---
+import type { PortfolioMessages } from '../../i18n/types';
+import PortfolioSection from './PortfolioSection.astro';
+
+interface Props { education: PortfolioMessages['education']; }
+const { education } = Astro.props;
+---
+
+<PortfolioSection id="education" index="01" eyebrow={education.eyebrow} title={education.title}>
+	<div class="grid gap-16">
+		{education.items.map((item, index) => (
+			<article class:list={['grid gap-[50px] lg:grid-cols-[.75fr_1.25fr] lg:gap-[clamp(50px,10vw,150px)]', index > 0 && 'border-t border-white/10 pt-16']}>
+				<div>
+					<span class="text-xs tracking-[.12em] text-zinc-500 ko:text-sm">{item.period}</span>
+					<h3 class="type-h4 mb-2 mt-6">{item.school}</h3>
+					<p class="m-0 text-xs text-teal-400 ko:text-[13px]">{item.degree}</p>
+				</div>
+				<div>
+					<p class="type-p1 mb-[38px] text-zinc-100 [word-break:keep-all]">{item.description}</p>
+					<ul class="m-0 list-none border-t border-white/10 p-0">
+						{item.highlights.map((highlight) => <li class="type-p3 border-b border-white/10 py-[17px] pl-6 text-zinc-400 before:-ml-6 before:pr-[14px] before:text-teal-400 before:content-['↳']">{highlight}</li>)}
+					</ul>
+				</div>
+			</article>
+		))}
+	</div>
+</PortfolioSection>

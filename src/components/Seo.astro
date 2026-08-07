@@ -1,0 +1,61 @@
+---
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import {
+	defaultLocale,
+	openGraphLocales,
+	type Locale,
+} from '../i18n/config';
+import { getLocaleIndependentPath } from '../i18n/utils';
+
+interface Props {
+	title: string;
+	description: string;
+	locale: Locale;
+	availableLocales: Locale[];
+}
+
+const { title, description, locale, availableLocales } = Astro.props;
+const path = getLocaleIndependentPath(Astro.url.pathname);
+const canonicalUrl = getAbsoluteLocaleUrl(locale, path);
+const alternateUrls = availableLocales.map((alternateLocale) => ({
+	locale: alternateLocale,
+	url: getAbsoluteLocaleUrl(alternateLocale, path),
+}));
+const defaultUrl = getAbsoluteLocaleUrl(
+	availableLocales.includes(defaultLocale) ? defaultLocale : availableLocales[0],
+	path,
+);
+const socialImageUrl = new URL('/og.png', Astro.site ?? Astro.url.origin);
+---
+
+<meta name="description" content={description} />
+<meta name="author" content="Seonwoo Jeong" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+<link rel="canonical" href={canonicalUrl} />
+{alternateUrls.map(({ locale: alternateLocale, url }) => (
+	<link rel="alternate" hreflang={alternateLocale} href={url} />
+))}
+<link rel="alternate" hreflang="x-default" href={defaultUrl} />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ptg.kr" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:locale" content={openGraphLocales[locale]} />
+<meta property="og:image" content={socialImageUrl} />
+<meta property="og:image:width" content="1731" />
+<meta property="og:image:height" content="909" />
+<meta property="og:image:alt" content="Seonwoo Jeong — Backend & DevOps Engineer" />
+{alternateUrls
+	.filter(({ locale: alternateLocale }) => alternateLocale !== locale)
+	.map(({ locale: alternateLocale }) => (
+		<meta property="og:locale:alternate" content={openGraphLocales[alternateLocale]} />
+	))}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImageUrl} />

@@ -1,0 +1,46 @@
+---
+import SegmentedControl, { type SegmentItem } from './ui/SegmentedControl.astro';
+import { localeLabels, locales, type Locale } from '../i18n/config';
+import { getMessages } from '../i18n/messages';
+import { getLocalizedPath, getLocaleIndependentPath } from '../i18n/utils';
+
+interface Props {
+	locale: Locale;
+	path?: string;
+	availableLocales?: readonly Locale[];
+	class?: string;
+}
+
+const { locale, path = Astro.url.pathname, availableLocales = locales, class: className } = Astro.props;
+const localeIndependentPath = getLocaleIndependentPath(path);
+const items: SegmentItem[] = availableLocales.map((itemLocale) => ({
+	value: itemLocale,
+	label: localeLabels[itemLocale],
+	href: getLocalizedPath(itemLocale, localeIndependentPath),
+	title: localeLabels[itemLocale],
+}));
+const label = getMessages(locale).common.localeSelectorLabel;
+---
+
+{items.length > 1 && (
+	<div class={className} data-locale-selector>
+		<SegmentedControl items={items} value={locale} label={label} />
+	</div>
+)}
+
+<script>
+	const preferenceKey = 'ptg-preferred-locale';
+
+	document.querySelectorAll('[data-locale-selector] a[hreflang]').forEach((link) => {
+		link.addEventListener('click', () => {
+			const locale = link.getAttribute('hreflang');
+			if (!locale) return;
+
+			try {
+				localStorage.setItem(preferenceKey, locale);
+			} catch {
+				// Navigation still works when storage is unavailable.
+			}
+		});
+	});
+</script>

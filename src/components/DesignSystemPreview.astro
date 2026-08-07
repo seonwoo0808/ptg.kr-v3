@@ -1,0 +1,242 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from './ui/SectionHeading.astro';
+import Surface from './ui/Surface.astro';
+import SegmentedControl from './ui/SegmentedControl.astro';
+import Navbar from './ui/Navbar.astro';
+import { Badge } from './ui/badge';
+import { buttonVariants } from './ui/button';
+import { locales, type Locale } from '../i18n/config';
+import { getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+const isKo = locale === 'ko';
+
+const colors = [
+	{ name: 'Brand', token: '--brand', className: 'bg-brand' },
+	{ name: 'Background', token: '--background', className: 'bg-background' },
+	{ name: 'Surface', token: '--card', className: 'bg-card' },
+	{ name: 'Muted', token: '--muted', className: 'bg-muted' },
+	{ name: 'Border', token: '--border', className: 'bg-border' },
+	{ name: 'Destructive', token: '--destructive', className: 'bg-destructive' },
+];
+
+const zincScale = [
+	['50', 'bg-zinc-50'], ['100', 'bg-zinc-100'], ['200', 'bg-zinc-200'], ['300', 'bg-zinc-300'],
+	['400', 'bg-zinc-400'], ['500', 'bg-zinc-500'], ['600', 'bg-zinc-600'], ['700', 'bg-zinc-700'],
+	['800', 'bg-zinc-800'], ['900', 'bg-zinc-900'], ['950', 'bg-zinc-950'],
+];
+const tealScale = [
+	['50', 'bg-teal-50'], ['100', 'bg-teal-100'], ['200', 'bg-teal-200'], ['300', 'bg-teal-300'],
+	['400', 'bg-teal-400'], ['500', 'bg-teal-500'], ['600', 'bg-teal-600'], ['700', 'bg-teal-700'],
+	['800', 'bg-teal-800'], ['900', 'bg-teal-900'], ['950', 'bg-teal-950'],
+];
+const spacings = [4, 8, 12, 16, 24, 32, 48, 64];
+const previewNavItems = [
+	{ label: isKo ? '기초' : 'Foundation', href: '#foundation' },
+	{ label: isKo ? '타이포그래피' : 'Typography', href: '#type' },
+	{ label: isKo ? '컴포넌트' : 'Components', href: '#components' },
+];
+const typeScale = [
+	{ role: 'Hero', token: '.type-hero', spec: '48–120 / 0.90 / 700', className: 'type-hero', sample: 'Clear. Consistent.' },
+	{ role: 'Display', token: '.type-display', spec: '72–172 / 0.88 / 800', className: 'type-display', sample: 'Make it clear.' },
+	{ role: 'Heading 1', token: '.type-h1', spec: '40–112 / 0.98 / 650', className: 'type-h1', sample: isKo ? '프로젝트의 첫인상' : 'The first impression' },
+	{ role: 'Heading 2', token: '.type-h2', spec: '36–70 / 1.06 / 600', className: 'type-h2', sample: isKo ? '섹션의 핵심 메시지' : 'The core message' },
+	{ role: 'Heading 3', token: '.type-h3', spec: '30–48 / 1.08 / 600', className: 'type-h3', sample: isKo ? '콘텐츠 그룹 제목' : 'Content group heading' },
+	{ role: 'Heading 4', token: '.type-h4', spec: '24–30 / 1.20 / 600', className: 'type-h4', sample: isKo ? '카드와 레코드 제목' : 'Card and record title' },
+	{ role: 'Paragraph 1', token: '.type-p1', spec: '17–21 / 1.70 / 400', className: 'type-p1', sample: isKo ? '핵심 소개와 리드 문장에 사용하는 큰 본문입니다.' : 'Large body text for introductions and lead sentences.' },
+	{ role: 'Paragraph 2', token: '.type-p2', spec: '16 / 1.70 / 400', className: 'type-p2', sample: isKo ? '일반적인 설명과 블로그 본문에 사용하는 기본 크기입니다.' : 'The default size for descriptions and blog content.' },
+	{ role: 'Paragraph 3', token: '.type-p3', spec: '14 / 1.75 / 400', className: 'type-p3', sample: isKo ? '보조 설명, 카드 상세 내용, 목록에 사용하는 작은 본문입니다.' : 'Small body text for supporting copy, cards, and lists.' },
+	{ role: 'Label', token: '.type-label', spec: '12 / 1.40 / 650', className: 'type-label', sample: 'Section label · 01' },
+	{ role: 'Caption', token: '.type-caption', spec: '12 / 1.40 / 650', className: 'type-caption', sample: 'Metadata / supporting text' },
+	{ role: 'Mono', token: '.type-mono', spec: '13 / 1.60 / 400', className: 'type-mono', sample: 'const stack = ["Astro", "Go"];' },
+];
+---
+
+<Layout
+	{locale}
+	availableLocales={[...locales]}
+	title="Design System Preview · ptg.kr"
+	description={isKo ? 'ptg.kr의 색상, 타이포그래피, 간격과 재사용 UI 컴포넌트 미리보기' : 'A preview of ptg.kr colors, typography, spacing, and reusable UI components.'}
+	themeColor="#09090b"
+>
+	<main id="top" class="dark min-h-screen bg-background text-foreground selection:bg-brand selection:text-brand-foreground">
+		<Navbar title="Design System" homeHref={getLocalizedPath(locale)} homeLabel={isKo ? '홈' : 'Home'} items={previewNavItems} label={isKo ? '디자인 시스템 섹션' : 'Design system sections'} {locale} position="sticky" container="contained" collapseAt="sm" />
+
+		<section class="relative overflow-hidden border-b border-border py-24 sm:py-32">
+			<div class="pointer-events-none absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_center,var(--brand)_1px,transparent_1.2px)] [background-size:24px_24px] [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true"></div>
+			<div class="ds-container relative">
+				<p class="ds-eyebrow">ptg.kr design language</p>
+				<h1 class="type-hero mt-6 max-w-4xl">
+					Clear<span class="text-brand">.</span><br />Consistent<span class="text-brand">.</span>
+				</h1>
+				<p class="mt-8 max-w-2xl font-sans text-base leading-8 text-muted-foreground sm:text-lg">
+					{isKo ? 'Teal과 Zinc 위에 Sera의 편집 디자인 원칙—정사각형 구조, 대문자 위계, 밑줄 컨트롤—을 적용한 포트폴리오 디자인 시스템입니다.' : 'A portfolio design system built on Teal and Zinc, shaped by Sera’s editorial principles: square structure, strong hierarchy, and underline controls.'}
+				</p>
+			</div>
+		</section>
+
+		<section id="foundation" class="ds-container scroll-mt-24 py-20 sm:py-28" aria-labelledby="foundation-title">
+			<SectionHeading id="foundation-title" eyebrow="01 / Foundation" title={isKo ? '색상과 공간' : 'Color and space'} description={isKo ? '브랜드 색상은 강조와 상호작용에만 사용하고, 대부분의 면과 텍스트는 Zinc 기반의 의미 토큰으로 구성합니다.' : 'Use the brand color for emphasis and interaction; build most surfaces and text with Zinc-based semantic tokens.'} />
+
+			<div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				{colors.map((color) => (
+					<Surface class="overflow-hidden">
+						<div class:list={['h-28', color.className]}></div>
+						<div class="flex items-center justify-between p-4">
+							<strong class="font-ui text-xs">{color.name}</strong>
+							<code class="font-mono text-xs text-muted-foreground">{color.token}</code>
+						</div>
+					</Surface>
+				))}
+			</div>
+
+			<div class="mt-12 grid gap-8 lg:grid-cols-2">
+				<div>
+					<h3 class="mb-4 font-ui text-xs uppercase tracking-[.14em] text-muted-foreground">Teal / Brand</h3>
+					<div class="grid grid-cols-11 overflow-hidden border border-border">
+						{tealScale.map(([step, className]) => <div class:list={['aspect-square', className]} title={`teal-${step}`}></div>)}
+					</div>
+				</div>
+				<div>
+					<h3 class="mb-4 font-ui text-xs uppercase tracking-[.14em] text-muted-foreground">Zinc / Base</h3>
+					<div class="grid grid-cols-11 overflow-hidden border border-border">
+						{zincScale.map(([step, className]) => <div class:list={['aspect-square', className]} title={`zinc-${step}`}></div>)}
+					</div>
+				</div>
+			</div>
+
+			<Surface class="mt-12 p-6 sm:p-8">
+				<h3 class="font-ui text-xs uppercase tracking-[.14em] text-muted-foreground">Spacing / 4px base</h3>
+				<div class="mt-7 flex flex-wrap items-end gap-6">
+					{spacings.map((space) => (
+						<div class="flex flex-col items-center gap-3">
+							<div class="bg-brand/80" style={`width:${space}px;height:${space}px`}></div>
+							<code class="font-mono text-xs text-muted-foreground">{space}</code>
+						</div>
+					))}
+				</div>
+			</Surface>
+		</section>
+
+		<section id="type" class="scroll-mt-24 border-y border-border bg-surface-subtle py-20 sm:py-28" aria-labelledby="type-title">
+			<div class="ds-container">
+				<SectionHeading id="type-title" eyebrow="02 / Typography" title={isKo ? '하나의 목소리, 명확한 역할' : 'One voice, clear roles'} description={isKo ? '제목, UI, 본문은 모두 Wanted Sans를 사용합니다. JetBrains Mono는 코드, 수치, 기술 메타데이터처럼 명시적인 모노스페이스 표현에만 사용합니다.' : 'Use Wanted Sans for headings, interface text, and body copy. Reserve JetBrains Mono for explicit monospace roles such as code, numbers, and technical metadata.'} />
+				<div class="mt-12 grid gap-px overflow-hidden border border-border bg-border lg:grid-cols-2">
+					<div class="bg-card p-7 sm:p-10" lang="ko">
+						<Badge variant="secondary">Wanted Sans / Default</Badge>
+						<p class="mt-8 font-heading text-[clamp(2.25rem,5vw,4.5rem)] font-bold leading-[1.02] tracking-[-.055em]">{isKo ? <Fragment>좋은 설계는<br />설명보다 오래간다.</Fragment> : <Fragment>Good design<br />outlasts explanation.</Fragment>}</p>
+						<p class="mt-6 max-w-lg font-sans text-base leading-8 text-muted-foreground">{isKo ? '균형 잡힌 글자 폭과 선명한 위계로 한국어 제목과 본문 모두에서 안정적인 읽기 경험을 제공합니다.' : 'Balanced letterforms and a clear hierarchy create a stable reading experience across headings and body text.'}</p>
+					</div>
+					<div class="bg-card p-7 sm:p-10" lang="en">
+						<Badge variant="secondary">JetBrains Mono / Explicit only</Badge>
+						<p class="mt-8 font-mono text-[clamp(2rem,4.5vw,4rem)] font-bold leading-[.98] tracking-[-.07em]">const type =<br />&quot;mono&quot;;</p>
+						<p class="ds-blog-copy mt-6 max-w-lg text-muted-foreground">{isKo ? '모노스페이스 역할은 코드, 기술 값, 메타데이터에만 사용합니다. 영문 본문과 인터페이스 텍스트도 Wanted Sans를 유지합니다.' : 'Use the monospace role only for code, technical values, and metadata. English prose and interface text remain in Wanted Sans.'}</p>
+					</div>
+				</div>
+
+				<Surface class="mt-8 overflow-hidden">
+					<div class="grid grid-cols-[minmax(0,1fr)] border-b border-border bg-muted/40 px-6 py-4 sm:grid-cols-[9rem_1fr_12rem]">
+						<span class="type-caption text-muted-foreground">{isKo ? '역할 / 토큰' : 'Role / token'}</span>
+						<span class="type-caption hidden text-muted-foreground sm:block">{isKo ? '미리보기' : 'Preview'}</span>
+						<span class="type-caption hidden text-right text-muted-foreground sm:block">{isKo ? '크기 / 행간 / 굵기' : 'Size / line / weight'}</span>
+					</div>
+					{typeScale.map((type) => (
+						<div class="grid gap-5 border-b border-border px-6 py-7 last:border-0 sm:grid-cols-[9rem_minmax(0,1fr)_12rem] sm:items-baseline">
+							<div>
+								<strong class="type-p3 block text-foreground">{type.role}</strong>
+								<code class="type-mono mt-1 block text-xs text-brand">{type.token}</code>
+							</div>
+							<p class:list={[type.className, 'min-w-0 overflow-hidden text-foreground']}>{type.sample}</p>
+							<code class="type-mono text-muted-foreground sm:text-right">{type.spec}</code>
+						</div>
+					))}
+				</Surface>
+
+				<div class="mt-8 grid gap-4 md:grid-cols-3">
+					<Surface class="p-6"><span class="type-label text-brand">Hierarchy</span><p class="type-p3 mt-4 text-muted-foreground">{isKo ? '한 화면에서 Display 또는 H1은 하나만 사용하고, H2부터 순서대로 내려갑니다.' : 'Use only one Display or H1 per view, then descend through the hierarchy from H2.'}</p></Surface>
+					<Surface class="p-6"><span class="type-label text-brand">Reading</span><p class="type-p3 mt-4 text-muted-foreground">{isKo ? '긴 문장은 P2를 기본으로 사용하며 한 줄 길이는 약 45–75자로 제한합니다.' : 'Use P2 for long-form copy and keep each line to approximately 45–75 characters.'}</p></Surface>
+					<Surface class="p-6"><span class="type-label text-brand">Monospace</span><p class="type-p3 mt-4 text-muted-foreground">{isKo ? 'JetBrains Mono는 코드, 수치, 기술 메타데이터에만 명시적으로 적용합니다.' : 'Apply JetBrains Mono explicitly and only to code, numbers, and technical metadata.'}</p></Surface>
+				</div>
+			</div>
+		</section>
+
+		<section id="components" class="ds-container scroll-mt-24 py-20 sm:py-28" aria-labelledby="components-title">
+			<SectionHeading id="components-title" eyebrow="03 / Components" title={isKo ? '재사용 가능한 UI' : 'Reusable UI'} description={isKo ? '같은 의미 토큰과 상태 규칙을 공유하므로 랜딩, 포트폴리오, 블로그에서 별도 스타일 복제 없이 사용할 수 있습니다.' : 'Shared semantic tokens and state rules let landing, portfolio, and blog interfaces reuse the same components without duplicated styles.'} />
+
+			<div class="mt-12 grid gap-6 lg:grid-cols-2">
+				<Surface class="p-6 sm:p-8">
+					<h3 class="font-ui text-xs uppercase tracking-[.14em] text-muted-foreground">{isKo ? '버튼' : 'Buttons'}</h3>
+					<div class="mt-6 flex flex-wrap gap-3">
+						<button class={buttonVariants()}>{isKo ? '기본' : 'Primary'}</button>
+						<button class={buttonVariants({ variant: 'secondary' })}>{isKo ? '보조' : 'Secondary'}</button>
+						<button class={buttonVariants({ variant: 'outline' })}>{isKo ? '외곽선' : 'Outline'}</button>
+						<button class={buttonVariants({ variant: 'ghost' })}>{isKo ? '고스트' : 'Ghost'}</button>
+						<button class={buttonVariants({ variant: 'destructive' })}>{isKo ? '삭제' : 'Delete'}</button>
+					</div>
+					<div class="mt-5 flex flex-wrap items-center gap-3">
+						<button class={buttonVariants({ size: 'xs' })}>{isKo ? '아주 작게' : 'Extra small'}</button>
+						<button class={buttonVariants({ size: 'sm' })}>{isKo ? '작게' : 'Small'}</button>
+						<button class={buttonVariants({ size: 'lg' })}>{isKo ? '크게' : 'Large'}</button>
+					</div>
+				</Surface>
+
+				<Surface class="p-6 sm:p-8">
+					<h3 class="font-ui text-xs uppercase tracking-[.14em] text-muted-foreground">{isKo ? '배지 & 세그먼트' : 'Badges & Segments'}</h3>
+					<div class="mt-6 flex flex-wrap gap-4">
+						<Badge>{isKo ? '기본' : 'Default'}</Badge>
+						<Badge variant="secondary">{isKo ? '보조' : 'Secondary'}</Badge>
+						<Badge variant="destructive">{isKo ? '오류' : 'Error'}</Badge>
+						<Badge variant="outline">Astro</Badge>
+					</div>
+					<div class="mt-8">
+						<SegmentedControl label={isKo ? '언어 선택 예시' : 'Language selector example'} value={locale} items={[{ value: 'ko', label: 'KO', href: '#components' }, { value: 'en', label: 'EN', href: '#components' }]} />
+					</div>
+				</Surface>
+
+				<Surface class="p-6 sm:p-8">
+					<h3 class="font-ui text-xs uppercase tracking-[.14em] text-muted-foreground">{isKo ? '폼' : 'Form'}</h3>
+					<form class="mt-6 space-y-5" onsubmit="return false">
+						<label class="block">
+							<span class="mb-2 block font-ui text-xs font-semibold">{isKo ? '프로젝트 이름' : 'Project name'}</span>
+							<input class="ds-field" type="text" placeholder={isKo ? '새 프로젝트' : 'New project'} />
+						</label>
+						<label class="block">
+							<span class="mb-2 block font-ui text-xs font-semibold">{isKo ? '설명' : 'Description'}</span>
+							<textarea class="ds-field min-h-28 py-3" placeholder={isKo ? '무엇을 만들고 있나요?' : 'What are you building?'}></textarea>
+						</label>
+						<button class={buttonVariants()}>{isKo ? '프로젝트 저장' : 'Save project'}</button>
+					</form>
+				</Surface>
+
+				<Surface raised class="relative overflow-hidden p-6 sm:p-8">
+					<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-brand via-brand/40 to-transparent"></div>
+					<div class="flex items-start justify-between gap-6">
+						<div>
+							<Badge variant="secondary">{isKo ? '주요 프로젝트' : 'Featured project'}</Badge>
+							<h3 class="mt-5 font-heading text-3xl font-semibold tracking-[-.055em]">{isKo ? '기본부터 재사용 가능' : 'Reusable by default'}<span class="text-brand">.</span></h3>
+						</div>
+						<span class="font-mono text-xs text-brand">/01</span>
+					</div>
+					<p class="mt-5 max-w-lg font-sans text-sm leading-7 text-muted-foreground">{isKo ? 'Surface, 타이포그래피, 색상, 상호작용 상태는 페이지별 값 대신 공유 토큰으로 조합합니다.' : 'Surface, typography, color and interaction states are composed from shared tokens instead of page-specific values.'}</p>
+					<div class="mt-8 flex gap-2">
+						<Badge variant="outline">Astro</Badge>
+						<Badge variant="outline">Tailwind</Badge>
+						<Badge variant="outline">Tokens</Badge>
+					</div>
+				</Surface>
+			</div>
+		</section>
+
+		<footer class="border-t border-border py-8">
+			<div class="ds-container flex flex-col justify-between gap-3 font-ui text-xs uppercase tracking-[.12em] text-muted-foreground sm:flex-row">
+				<span>ptg.kr design system</span>
+				<a href="#top" class="text-brand no-underline">{isKo ? '맨 위로' : 'Back to top'} ↑</a>
+			</div>
+		</footer>
+	</main>
+</Layout>

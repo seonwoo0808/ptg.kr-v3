@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import { defaultLocale, type Locale } from '../i18n/config';
+import { getMessages } from '../i18n/messages';
+import { getLocalizedPath, getLocaleIndependentPath } from '../i18n/utils';
+
+interface Props {
+	locale?: Locale;
+	title?: string;
+	description?: string;
+	themeColor?: string;
+	availableLocales?: Locale[];
+}
+
+const {
+	locale = defaultLocale,
+	themeColor = 'black',
+	availableLocales = [locale],
+} = Astro.props;
+const messages = getMessages(locale);
+const title = Astro.props.title ?? messages.landing.meta.title;
+const description = Astro.props.description ?? messages.landing.meta.description;
+const path = getLocaleIndependentPath(Astro.url.pathname);
+const localeTargets = Object.fromEntries(
+	availableLocales.map((availableLocale) => [availableLocale, getLocalizedPath(availableLocale, path)]),
+);
+---
+
+<!doctype html>
+<html lang={locale}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content={themeColor} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<Seo {title} {description} {locale} {availableLocales} />
+		<script
+			is:inline
+			define:vars={{ currentLocale: locale, defaultLocale, localeTargets }}
+		>
+			(() => {
+				if (currentLocale !== defaultLocale) return;
+
+				const storageKey = 'ptg-preferred-locale';
+				let savedLocale = null;
+				try {
+					savedLocale = localStorage.getItem(storageKey);
+				} catch {
+					// Continue with the browser language when storage is unavailable.
+				}
+				const supportedLocales = Object.keys(localeTargets);
+				const browserLocales = navigator.languages?.length ? navigator.languages : [navigator.language];
+				const preferredLocale = supportedLocales.includes(savedLocale)
+					? savedLocale
+					: browserLocales
+						.map((language) => language.toLowerCase().split('-')[0])
+						.find((language) => supportedLocales.includes(language));
+
+				if (preferredLocale && preferredLocale !== currentLocale) {
+					location.replace(localeTargets[preferredLocale]);
+				}
+			})();
+		</script>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
