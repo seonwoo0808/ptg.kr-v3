@@ -17,8 +17,8 @@ const groups = [
 
 	<div class="grid gap-px bg-white/10 md:grid-cols-2">
 		{groups.map((group, index) => (
-			<article class="min-h-[330px] bg-zinc-900 p-7 sm:p-10">
-				<header class="mb-12 flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+			<article class="min-h-[300px] bg-zinc-900 p-7 sm:p-10">
+				<header class="mb-9 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
 					<h3 class="type-label text-teal-400">{group.title}</h3>
 					<span class="type-caption text-zinc-600" aria-hidden="true">/{String(index + 1).padStart(2, '0')}</span>
 				</header>
