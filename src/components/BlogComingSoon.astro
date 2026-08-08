@@ -25,7 +25,6 @@ const navItems = [
 		homeHref={getLocalizedPath(locale)}
 		homeLabel={t.navigation.home}
 		items={navItems}
-		label={messages.common.navigationLabel}
 		{locale}
 		position="static"
 	/>
@@ -34,7 +33,7 @@ const navItems = [
 		<div class="grid w-full items-end gap-14 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-20">
 			<div>
 				<p class="type-label mb-8 flex items-center gap-3 text-teal-400">
-					<span class="h-px w-9 bg-current" aria-hidden="true"></span>{t.status}
+					<span class="h-px w-9 bg-current" aria-hidden="true"></span>Writing in progress
 				</p>
 				<h1 id="blog-title" class:list={['whitespace-pre-line text-[clamp(3.75rem,10vw,8.5rem)] font-bold leading-[.9] tracking-[-.075em] text-balance', locale === 'en' && 'uppercase']}>
 					{t.title}

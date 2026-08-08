@@ -7,6 +7,6 @@ interface Props { awards: PortfolioMessages['awards']; }
 const { awards } = Astro.props;
 ---
 
-<PortfolioSection id="awards" index="04" eyebrow={awards.eyebrow} title={awards.title} surface>
+<PortfolioSection id="awards" index="04" eyebrow="Awards" title={awards.title} surface>
 	<RecordList items={awards.items} empty={awards.empty} surface />
 </PortfolioSection>

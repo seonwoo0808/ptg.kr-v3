@@ -7,6 +7,6 @@ interface Props { certifications: PortfolioMessages['certifications']; }
 const { certifications } = Astro.props;
 ---
 
-<PortfolioSection id="certifications" index="05" eyebrow={certifications.eyebrow} title={certifications.title}>
+<PortfolioSection id="certifications" index="05" eyebrow="Certifications" title={certifications.title}>
 	<RecordList items={certifications.items} empty={certifications.empty} />
 </PortfolioSection>

@@ -19,7 +19,7 @@ export const portfolio = {
 		{
 			id: 'proxmox-platform', index: '01', title: 'Proxmox VM Management Platform',
 			summary: 'A backend system automating virtual machine and cluster operations',
-			context: 'Infrastructure automation · Production system', role: 'Backend Lead', period: '2024—2026',
+			context: 'Infrastructure automation · Production system', role: 'Backend Lead', period: '2024 - 2026',
 			challenge: 'Duplicate requests and incomplete state sync could cause real VM outages or data loss.',
 			approach: ['Designed the backend architecture and domain model', 'Built VM lifecycle workflows on the Proxmox API', 'Centered validation, state handling, and recovery around consistency'],
 			outcome: 'Unified repetitive VM operations into one consistent workflow and established a Docker-based delivery environment.',
@@ -27,12 +27,12 @@ export const portfolio = {
 		},
 		{
 			id: 'qenv', index: '02', title: 'Qenv',
-			summary: 'A multi-tenant platform for securely managing team secrets and environment variables',
-			context: 'Security · Authorization · SaaS', role: 'Product Engineer', period: '2025',
-			challenge: 'Teams needed to stop leaking sensitive settings and retaining access after membership changed.',
-			approach: ['Modeled Workspace → Environment Set → Secret hierarchy', 'Combined default roles and user exceptions in a resource ACL', 'Designed OAuth flows and a type-safe database schema'],
-			outcome: 'Expressed tenant isolation and granular permission inheritance as one coherent domain model.',
-			stack: ['TypeScript', 'React', 'Bun', 'PostgreSQL', 'Redis', 'Drizzle', 'OAuth'],
+			summary: 'A multi-tenant platform protecting team environment variables with PQC and end-to-end encryption as quantum computers threaten conventional public-key cryptography',
+			context: 'Post-quantum cryptography · E2EE · Authorization', role: 'Product Engineer', period: '2025 - Present',
+			challenge: 'A server or database breach could not be allowed to expose secrets alongside their decryption keys. Key sharing for long-lived secrets also needed to account for the risk that quantum computers could weaken conventional public-key cryptography.',
+			approach: ['Derived each user encryption key with Argon2id and stored the ML-KEM-1024 private key only after wrapping it with AES-256-GCM', 'Encrypted secrets with a client-generated 256-bit Environment Set key, separating AES-256-GCM data encryption from key delivery', 'Designed collaborator onboarding to deliver the Environment Set key through the recipient’s quantum-resistant ML-KEM-1024 public key, with Workspace and Environment Set ACLs plus key-reroll state governing its lifecycle'],
+			outcome: 'Implemented crypto-credential registration, retrieval, and strict key-size validation, then modeled per-collaborator PQC key delivery and key rerolling in a ciphertext-oriented database schema.',
+			stack: ['Go', 'Fiber', 'PostgreSQL', 'Redis', 'SQLC', 'ML-KEM', 'AES-GCM', 'Argon2id'],
 		},
 		{
 			id: 'rfb-proxy', index: '03', title: 'Web RFB Client & Proxy',
@@ -48,7 +48,7 @@ export const portfolio = {
 		title: 'Education',
 		items: [
 			{
-				school: 'Inha University', degree: 'Double Major in Business Administration and Computer Engineering', period: 'In progress',
+				school: 'Inha University', degree: 'Double Major in Business Administration and Computer Engineering', period: '2025 - Present',
 				description: 'I study how to understand business requirements and translate them into reliable technical systems.',
 				highlights: ['Business processes and user requirement analysis', 'Computer science foundations for system design', 'Problem-solving across product and operations'],
 			},
@@ -114,7 +114,8 @@ export const portfolio = {
 		],
 	},
 	capabilities: {
-		title: 'A stack spanning product and operations',
+		title: 'Tech Stack',
+		description: 'I design fast, resource-efficient backend systems\nand infrastructure that scale reliably.',
 	},
 	contact: {
 		title: 'Have a problem worth solving together?',

@@ -112,6 +112,7 @@ export interface PortfolioMessages extends SectionMessages {
 	};
 	capabilities: {
 		title: string;
+		description: string;
 	};
 	contact: {
 		title: string;

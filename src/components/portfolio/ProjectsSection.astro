@@ -12,7 +12,7 @@ const { projects, labels } = Astro.props;
 ---
 
 <PortfolioSection id="projects" index="03" eyebrow="Projects" title={labels.selectedWork}>
-	<span slot="meta" class="type-caption pb-2 text-zinc-500">{labels.projectCount}</span>
+	<span slot="meta" class="type-caption pb-2 text-zinc-500">{String(projects.length).padStart(2, '0')} projects</span>
 	<div class="grid gap-6">
 		{projects.map((project) => <ProjectCard {project} {labels} />)}
 	</div>

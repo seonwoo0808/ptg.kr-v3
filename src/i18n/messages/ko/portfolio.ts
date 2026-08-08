@@ -19,7 +19,7 @@ export const portfolio = {
 		{
 			id: 'proxmox-platform', index: '01', title: 'Proxmox VM Management Platform',
 			summary: '가상머신과 클러스터 운영을 자동화하는 백엔드 시스템',
-			context: 'Infrastructure automation · Production system', role: 'Backend Lead', period: '2024—2026',
+			context: 'Infrastructure automation · Production system', role: 'Backend Lead', period: '2024 - 2026',
 			challenge: '중복 요청과 불완전한 상태 동기화가 실제 VM 장애나 데이터 손실로 이어질 수 있는 환경이었습니다.',
 			approach: ['전체 백엔드 아키텍처와 도메인 모델 설계', 'Proxmox API 기반 VM 생성·수정·삭제 흐름 구현', '요청 검증, 상태 관리, 오류 복구를 중심으로 일관성 확보'],
 			outcome: '반복적인 VM 운영 업무를 하나의 일관된 관리 흐름으로 통합하고 Docker 기반 배포 환경을 구축했습니다.',
@@ -27,12 +27,12 @@ export const portfolio = {
 		},
 		{
 			id: 'qenv', index: '02', title: 'Qenv',
-			summary: '팀의 환경 변수와 시크릿을 안전하게 관리하는 멀티테넌트 플랫폼',
-			context: 'Security · Authorization · SaaS', role: 'Product Engineer', period: '2025',
-			challenge: '프로젝트별 설정 공유 과정에서 민감 정보가 노출되고, 구성원 변경 후에도 접근 권한이 남는 문제를 해결해야 했습니다.',
-			approach: ['Workspace → Environment Set → Secret 계층형 모델 설계', '기본 권한과 사용자 예외를 결합한 리소스 단위 ACL 구성', 'OAuth 인증과 타입 안전한 데이터베이스 스키마 설계'],
-			outcome: '멀티테넌트 데이터 격리와 세분화된 권한 상속을 하나의 명확한 도메인 모델로 정리했습니다.',
-			stack: ['TypeScript', 'React', 'Bun', 'PostgreSQL', 'Redis', 'Drizzle', 'OAuth'],
+			summary: '양자컴퓨터가 기존 공개키 암호를 위협할 미래에 대비해, PQC와 종단간 암호화로 팀 환경 변수를 보호하는 플랫폼',
+			context: 'Post-quantum cryptography · E2EE · Authorization', role: 'Product Engineer', period: '2025 - 진행 중',
+			challenge: '서버나 저장소가 침해되어도 시크릿 평문과 복호화 키가 함께 노출되지 않아야 했습니다. 또한 양자컴퓨터의 발전으로 기존 공개키 암호가 장기적으로 약화될 수 있는 위험까지 고려해야 했습니다.',
+			approach: ['Argon2id로 사용자 암호화 키를 유도하고, ML-KEM-1024 비밀키는 AES-256-GCM으로 감싸 서버에 암호문으로만 보관', '클라이언트가 생성한 256비트 Env Set 키로 시크릿을 AES-256-GCM 암호화해 데이터 암호화와 키 전달 책임을 분리', '협업자 초대 시 양자 공격에 대비한 ML-KEM-1024 공개키로 Env Set 키를 전달하고, Workspace·Env Set ACL과 키 재발급 상태로 접근 수명주기 설계'],
+			outcome: '암호 자격 증명 등록·조회와 엄격한 키 크기 검증을 구현하고, 협업자별 PQC 키 전달 및 키 재발급 흐름을 암호문 중심의 데이터베이스 스키마로 구체화했습니다.',
+			stack: ['Go', 'Fiber', 'PostgreSQL', 'Redis', 'SQLC', 'ML-KEM', 'AES-GCM', 'Argon2id'],
 		},
 		{
 			id: 'rfb-proxy', index: '03', title: 'Web RFB Client & Proxy',
@@ -48,7 +48,7 @@ export const portfolio = {
 		title: '학력',
 		items: [
 			{
-				school: '인하대학교', degree: '경영학 주전공 · 컴퓨터공학 복수전공', period: '재학 중',
+				school: '인하대학교', degree: '경영학 주전공 · 컴퓨터공학 복수전공', period: '2025 - 재학 중',
 				description: '비즈니스 요구사항을 이해하고 이를 안정적인 기술 구조로 구현하는 방법을 공부하고 있습니다.',
 				highlights: ['비즈니스 프로세스와 사용자 요구사항 분석', '컴퓨터공학 기반의 시스템 설계 및 구현', '제품과 운영 환경을 함께 고려하는 문제 해결'],
 			},
@@ -114,7 +114,8 @@ export const portfolio = {
 		],
 	},
 	capabilities: {
-		title: '제품과 운영을 함께 보는 기술 스택',
+		title: '기술 스택',
+		description: '빠른 응답과 효율적인 자원 활용을 바탕으로,\n안정적으로 확장되는 백엔드와 인프라를 설계합니다.',
 	},
 	contact: {
 		title: '함께 헤쳐나갈\n문제가 있나요?',
