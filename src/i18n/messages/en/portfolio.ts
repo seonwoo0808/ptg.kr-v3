@@ -7,13 +7,12 @@ export const portfolio = {
 	},
 	navigation: { home: 'Home', education: 'Education', experience: 'Experience', projects: 'Projects', awards: 'Awards', certifications: 'Certifications' },
 	hero: {
-		eyebrow: 'Backend & DevOps Engineer · Portfolio 2026',
 		intro: 'Studying business and computer science, I am a backend engineer with experience in various IT projects.',
 		availability: 'Open to work & collaboration',
 		scroll: 'Explore my background',
 	},
 	labels: {
-		selectedWork: 'Projects', projectCount: '03 projects', role: 'Role', period: 'Period',
+		selectedWork: 'Projects', role: 'Role', period: 'Period',
 		challenge: 'Challenge', approach: 'Approach', outcome: 'Outcome', openDetails: 'Learn more',
 	},
 	projects: [
@@ -46,7 +45,7 @@ export const portfolio = {
 		},
 	],
 	education: {
-		eyebrow: 'Education', title: 'Education',
+		title: 'Education',
 		items: [
 			{
 				school: 'Inha University', degree: 'Double Major in Business Administration and Computer Engineering', period: 'In progress',
@@ -61,13 +60,13 @@ export const portfolio = {
 		],
 	},
 	experience: {
-		eyebrow: 'Experience', title: 'Experience', company: 'FlexIT Co.',
+		title: 'Experience', company: 'FlexIT Co.',
 		role: 'Backend Developer · Tech Lead', period: '2024.11 — 2026.01',
 		description: 'Led backend development and technical design for a Proxmox-based VM and cluster management automation product.',
 		highlights: ['Designed the backend system and PostgreSQL schema', 'Built Proxmox cluster resource management features', 'Established Docker delivery and Redis state workflows', 'Guided technical decisions and development direction'],
 	},
 	awards: {
-		eyebrow: 'Awards', title: 'Awards', empty: 'Awards will be added here as they are documented.',
+		title: 'Awards', empty: 'Awards will be added here as they are documented.',
 		items: [
 			{
 				title: '2025 INHA SW NET-ZERO with Azure',
@@ -102,7 +101,7 @@ export const portfolio = {
 		],
 	},
 	certifications: {
-		eyebrow: 'Certifications', title: 'Certifications', empty: 'Certifications will be added here as they are documented.',
+		title: 'Certifications', empty: 'Certifications will be added here as they are documented.',
 		items: [
 			{
 				title: 'Network Administrator Level 2', issuer: 'Korea Information and Communications Qualification Association', period: '2023.10.10',
@@ -115,24 +114,10 @@ export const portfolio = {
 		],
 	},
 	capabilities: {
-		eyebrow: 'Capabilities', title: 'A stack spanning product and operations',
-		groups: [
-			{ title: 'Backend', items: ['Go', 'TypeScript', 'Python', 'Fiber', 'Elysia', 'REST API', 'WebSocket'] },
-			{ title: 'Data', items: ['PostgreSQL', 'Redis', 'SQLite', 'Drizzle ORM', 'SQLC', 'LanceDB'] },
-			{ title: 'Infrastructure', items: ['OCI', 'Docker', 'Proxmox', 'Kubernetes', 'Cloudflare', 'Caddy', 'Tailscale'] },
-			{ title: 'Security', items: ['OAuth 2.1', 'OpenID Connect', 'JWT', 'JWKS', 'Passkey', 'AES-GCM'] },
-		],
-	},
-	principles: {
-		eyebrow: 'How I work', title: 'Principles for systems built to last',
-		items: [
-			{ index: '01', title: 'Design for operations', description: 'I consider failure, delivery, data consistency, and scale from the beginning.' },
-			{ index: '02', title: 'Understand the whole product', description: 'I look beyond APIs to the links between users, operations, data, and infrastructure.' },
-			{ index: '03', title: 'Automate repetition', description: 'I turn repeated manual operations into predictable systems and code.' },
-		],
+		title: 'A stack spanning product and operations',
 	},
 	contact: {
-		eyebrow: 'Start a conversation', title: 'Have a problem worth solving together?',
+		title: 'Have a problem worth solving together?',
 		description: 'I am always interested in backend systems, infrastructure automation, and thoughtful products.',
 		email: 'Send an email', github: 'View GitHub', backToTop: 'Back to top',
 	},

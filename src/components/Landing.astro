@@ -78,30 +78,30 @@ const techStack = [
 	<aside class="dev-profile type-mono fade-up" aria-labelledby="dev-profile-title">
 		<header class="dev-profile__header">
 			<div>
-				<span class="eyebrow type-caption">{t.profile.eyebrow}</span>
-				<h2 id="dev-profile-title">{t.profile.title}</h2>
+				<span class="eyebrow type-caption">Developer telemetry</span>
+				<h2 id="dev-profile-title">Build Log</h2>
 			</div>
-			<span class="live-status type-caption"><span aria-hidden="true"></span> {t.profile.live}</span>
+			<span class="live-status type-caption"><span aria-hidden="true"></span> Live</span>
 		</header>
 
 		<section class="code-time" aria-labelledby="code-time-title">
 			<div class="section-label type-caption">
-				<span id="code-time-title">{t.profile.totalCodeTime}</span>
-				<span>{t.profile.since}</span>
+				<span id="code-time-title">Total code time</span>
+				<span>Since Dec. 2022</span>
 			</div>
 			<div class="code-time__value" aria-live="polite">
 				<strong data-code-hours>Loading...</strong>
-				<span>{t.profile.hoursUnit}</span>
+				<span>hrs</span>
 			</div>
 			<div class="code-time__meta">
-				<span>{t.profile.dailyAverage}</span>
+				<span>Daily average</span>
 				<strong data-daily-average>Loading...</strong>
 			</div>
 		</section>
 
 		<section class="stack-cloud" aria-labelledby="stack-title">
 			<div class="section-label type-caption">
-				<span id="stack-title">{t.profile.coreStack}</span>
+				<span id="stack-title">Core stack</span>
 			</div>
 			<ul class="stack-cloud__items">
 				{techStack.map(({ icon, label }) => (
