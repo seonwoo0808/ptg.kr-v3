@@ -7,13 +7,12 @@ export const portfolio = {
 	},
 	navigation: { home: '홈', education: '학력', experience: '경력', projects: '프로젝트', awards: '수상', certifications: '자격증' },
 	hero: {
-		eyebrow: 'Backend & DevOps Engineer · Portfolio 2026',
 		intro: '경영과 컴퓨터공학을 공부하며 여러 IT 프로젝트를 경험하고 있는 백엔드 엔지니어',
 		availability: '현재 새로운 커리어 기회를 탐색하고 있습니다',
 		scroll: '이력 살펴보기',
 	},
 	labels: {
-		selectedWork: '프로젝트', projectCount: '03 projects', role: '역할', period: '기간',
+		selectedWork: '프로젝트', role: '역할', period: '기간',
 		challenge: '문제', approach: '접근 방식', outcome: '핵심 결과', openDetails: '더 알아보기',
 	},
 	projects: [
@@ -46,7 +45,7 @@ export const portfolio = {
 		},
 	],
 	education: {
-		eyebrow: 'Education', title: '학력',
+		title: '학력',
 		items: [
 			{
 				school: '인하대학교', degree: '경영학 주전공 · 컴퓨터공학 복수전공', period: '재학 중',
@@ -61,13 +60,13 @@ export const portfolio = {
 		],
 	},
 	experience: {
-		eyebrow: 'Experience', title: '경력', company: 'FlexIT Co.',
+		title: '경력', company: 'FlexIT Co.',
 		role: 'Backend Developer · Tech Lead', period: '2024.11 — 2026.01',
 		description: 'Proxmox 기반 가상머신 및 클러스터 관리 자동화 솔루션의 백엔드 개발과 기술 설계를 담당했습니다.',
 		highlights: ['백엔드 시스템과 PostgreSQL 스키마 설계', 'Proxmox 클러스터 자원 관리 기능 개발', 'Docker 배포 환경 및 Redis 상태 처리 구조 구축', '프로젝트 기술 의사결정과 개발 방향 관리'],
 	},
 	awards: {
-		eyebrow: 'Awards', title: '수상 이력', empty: '수상 이력은 추후 업데이트할 예정입니다.',
+		title: '수상 이력', empty: '수상 이력은 추후 업데이트할 예정입니다.',
 		items: [
 			{
 				title: '2025 INHA SW NET-ZERO with Azure',
@@ -102,7 +101,7 @@ export const portfolio = {
 		],
 	},
 	certifications: {
-		eyebrow: 'Certifications', title: '자격증', empty: '자격증 정보는 추후 업데이트할 예정입니다.',
+		title: '자격증', empty: '자격증 정보는 추후 업데이트할 예정입니다.',
 		items: [
 			{
 				title: '네트워크관리사 2급', issuer: '한국정보통신자격협회', period: '2023.10.10',
@@ -115,24 +114,10 @@ export const portfolio = {
 		],
 	},
 	capabilities: {
-		eyebrow: 'Capabilities', title: '제품과 운영을 함께 보는 기술 스택',
-		groups: [
-			{ title: 'Backend', items: ['Go', 'TypeScript', 'Python', 'Fiber', 'Elysia', 'REST API', 'WebSocket'] },
-			{ title: 'Data', items: ['PostgreSQL', 'Redis', 'SQLite', 'Drizzle ORM', 'SQLC', 'LanceDB'] },
-			{ title: 'Infrastructure', items: ['OCI', 'Docker', 'Proxmox', 'Kubernetes', 'Cloudflare', 'Caddy', 'Tailscale'] },
-			{ title: 'Security', items: ['OAuth 2.1', 'OpenID Connect', 'JWT', 'JWKS', 'Passkey', 'AES-GCM'] },
-		],
-	},
-	principles: {
-		eyebrow: 'How I work', title: '오래 유지되는 시스템을 만드는 기준',
-		items: [
-			{ index: '01', title: '운영을 먼저 생각합니다', description: '장애, 배포, 데이터 일관성과 확장성을 개발 단계부터 함께 고려합니다.' },
-			{ index: '02', title: '전체 제품을 이해합니다', description: 'API를 넘어 사용자 화면, 관리자 업무, 데이터와 인프라의 연결을 봅니다.' },
-			{ index: '03', title: '반복을 자동화합니다', description: '사람이 반복하던 운영 흐름을 예측 가능한 시스템과 코드로 바꿉니다.' },
-		],
+		title: '제품과 운영을 함께 보는 기술 스택',
 	},
 	contact: {
-		eyebrow: 'Start a conversation', title: '함께 헤쳐나갈\n문제가 있나요?',
+		title: '함께 헤쳐나갈\n문제가 있나요?',
 		description: '백엔드 설계, 인프라 자동화, 새로운 제품에 관한 이야기를 기다립니다.',
 		email: '이메일 보내기', github: 'GitHub 보기', backToTop: '맨 위로',
 	},

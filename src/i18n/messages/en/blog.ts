@@ -9,7 +9,6 @@ export const blog = {
 		home: 'Home',
 		portfolio: 'Portfolio',
 	},
-	status: 'Writing in progress',
 	title: 'Thoughts are\ntaking shape.',
 	note: 'The first story will be here soon.',
 	backHome: 'Back home',
