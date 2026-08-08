@@ -4,13 +4,19 @@ import PortfolioSection from './PortfolioSection.astro';
 
 interface Props { capabilities: PortfolioMessages['capabilities']; }
 const { capabilities } = Astro.props;
+const groups = [
+	{ title: 'Backend Engineering', items: ['Go', 'TypeScript', 'Fiber', 'Bun'] },
+	{ title: 'Infrastructure', items: ['Proxmox', 'OCI', 'Kubernetes', 'Cloudflare'] },
+	{ title: 'Data', items: ['PostgreSQL', 'Memcached', 'S3 Compatible', 'LanceDB'] },
+	{ title: 'Security', items: ['OAuth 2.1', 'OpenID Connect', 'JWT / JWKS', 'PQC / Kyber'] },
+];
 ---
 
-<PortfolioSection id="tech-stack" index="06" eyebrow={capabilities.eyebrow} title={capabilities.title} surface>
+<PortfolioSection id="tech-stack" index="06" eyebrow="Capabilities" title={capabilities.title} surface>
 	<p class="type-p1 mb-14 max-w-[680px] whitespace-pre-line text-zinc-400 [word-break:keep-all]">{capabilities.description}</p>
 
 	<div class="grid gap-px bg-white/10 md:grid-cols-2">
-		{capabilities.groups.map((group, index) => (
+		{groups.map((group, index) => (
 			<article class="min-h-[330px] bg-zinc-900 p-7 sm:p-10">
 				<header class="mb-12 flex items-center justify-between gap-4 border-b border-white/10 pb-5">
 					<h3 class="type-label text-teal-400">{group.title}</h3>

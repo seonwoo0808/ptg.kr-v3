@@ -5,15 +5,14 @@ export const portfolio = {
 		title: 'Portfolio - ptg.kr',
 		description: "The portfolio of Seonwoo Jeong, a backend and DevOps engineer designing reliable systems.",
 	},
-	navigation: { home: 'Home', education: 'Education', experience: 'Experience', projects: 'Projects', awards: 'Awards', certifications: 'Certifications', techStack: 'Tech Stack' },
+	navigation: { home: 'Home', education: 'Education', experience: 'Experience', projects: 'Projects', awards: 'Awards', certifications: 'Certifications' },
 	hero: {
-		eyebrow: 'Backend & DevOps Engineer · Portfolio 2026',
 		intro: 'Studying business and computer science, I am a backend engineer with experience in various IT projects.',
 		availability: 'Open to work & collaboration',
 		scroll: 'Explore my background',
 	},
 	labels: {
-		selectedWork: 'Projects', projectCount: '03 projects', role: 'Role', period: 'Period',
+		selectedWork: 'Projects', role: 'Role', period: 'Period',
 		challenge: 'Challenge', approach: 'Approach', outcome: 'Outcome', openDetails: 'Learn more',
 	},
 	projects: [
@@ -46,7 +45,7 @@ export const portfolio = {
 		},
 	],
 	education: {
-		eyebrow: 'Education', title: 'Education',
+		title: 'Education',
 		items: [
 			{
 				school: 'Inha University', degree: 'Double Major in Business Administration and Computer Engineering', period: '2025 - Present',
@@ -61,13 +60,13 @@ export const portfolio = {
 		],
 	},
 	experience: {
-		eyebrow: 'Experience', title: 'Experience', company: 'FlexIT Co.',
+		title: 'Experience', company: 'FlexIT Co.',
 		role: 'Backend Developer · Tech Lead', period: '2024.11 — 2026.01',
 		description: 'Led backend development and technical design for a Proxmox-based VM and cluster management automation product.',
 		highlights: ['Designed the backend system and PostgreSQL schema', 'Built Proxmox cluster resource management features', 'Established Docker delivery and Redis state workflows', 'Guided technical decisions and development direction'],
 	},
 	awards: {
-		eyebrow: 'Awards', title: 'Awards', empty: 'Awards will be added here as they are documented.',
+		title: 'Awards', empty: 'Awards will be added here as they are documented.',
 		items: [
 			{
 				title: '2025 INHA SW NET-ZERO with Azure',
@@ -102,7 +101,7 @@ export const portfolio = {
 		],
 	},
 	certifications: {
-		eyebrow: 'Certifications', title: 'Certifications', empty: 'Certifications will be added here as they are documented.',
+		title: 'Certifications', empty: 'Certifications will be added here as they are documented.',
 		items: [
 			{
 				title: 'Network Administrator Level 2', issuer: 'Korea Information and Communications Qualification Association', period: '2023.10.10',
@@ -115,25 +114,11 @@ export const portfolio = {
 		],
 	},
 	capabilities: {
-		eyebrow: 'Tech Stack', title: 'Tech Stack',
+		title: 'Tech Stack',
 		description: 'I design fast, resource-efficient backend systems\nand infrastructure that scale reliably.',
-		groups: [
-			{ title: 'Backend Engineering', items: ['Go', 'TypeScript', 'Fiber', 'Bun'] },
-			{ title: 'Infrastructure', items: ['Proxmox', 'OCI', 'Kubernetes', 'Cloudflare'] },
-			{ title: 'Data', items: ['PostgreSQL', 'Memcached', 'S3 Compatible', 'LanceDB'] },
-			{ title: 'Security', items: ['OAuth 2.1', 'OpenID Connect', 'JWT / JWKS', 'PQC / Kyber'] },
-		],
-	},
-	principles: {
-		eyebrow: 'How I work', title: 'Principles for systems built to last',
-		items: [
-			{ index: '01', title: 'Design for operations', description: 'I consider failure, delivery, data consistency, and scale from the beginning.' },
-			{ index: '02', title: 'Understand the whole product', description: 'I look beyond APIs to the links between users, operations, data, and infrastructure.' },
-			{ index: '03', title: 'Automate repetition', description: 'I turn repeated manual operations into predictable systems and code.' },
-		],
 	},
 	contact: {
-		eyebrow: 'Start a conversation', title: 'Have a problem worth solving together?',
+		title: 'Have a problem worth solving together?',
 		description: 'I am always interested in backend systems, infrastructure automation, and thoughtful products.',
 		email: 'Send an email', github: 'View GitHub', backToTop: 'Back to top',
 	},

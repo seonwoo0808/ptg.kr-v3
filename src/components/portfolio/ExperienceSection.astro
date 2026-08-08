@@ -6,7 +6,7 @@ interface Props { experience: PortfolioMessages['experience']; }
 const { experience } = Astro.props;
 ---
 
-<PortfolioSection id="experience" index="02" eyebrow={experience.eyebrow} title={experience.title} surface>
+<PortfolioSection id="experience" index="02" eyebrow="Experience" title={experience.title} surface>
 	<div class="grid gap-[50px] lg:grid-cols-[.75fr_1.25fr] lg:gap-[clamp(50px,10vw,150px)]">
 		<div>
 			<span class="text-xs tracking-[.12em] text-zinc-500 ko:text-sm">{experience.period}</span>

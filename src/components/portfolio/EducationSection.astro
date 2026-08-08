@@ -6,7 +6,7 @@ interface Props { education: PortfolioMessages['education']; }
 const { education } = Astro.props;
 ---
 
-<PortfolioSection id="education" index="01" eyebrow={education.eyebrow} title={education.title}>
+<PortfolioSection id="education" index="01" eyebrow="Education" title={education.title}>
 	<div class="grid gap-16">
 		{education.items.map((item, index) => (
 			<article class:list={['grid gap-[50px] lg:grid-cols-[.75fr_1.25fr] lg:gap-[clamp(50px,10vw,150px)]', index > 0 && 'border-t border-white/10 pt-16']}>

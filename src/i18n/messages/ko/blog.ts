@@ -9,7 +9,6 @@ export const blog = {
 		home: '홈',
 		portfolio: '포트폴리오',
 	},
-	status: 'Writing in progress',
 	title: '기록을 다듬고\n있습니다.',
 	note: '곧 첫 번째 글로 찾아뵙겠습니다.',
 	backHome: '홈으로 돌아가기',
