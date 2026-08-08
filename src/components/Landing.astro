@@ -35,17 +35,6 @@ const techStack = [
 	{ icon: siOpencontainersinitiative, label: 'OCI' },
 	{ icon: siKubernetes, label: 'Kubernetes' },
 ];
-
-const profile = {
-	eyebrow: 'Developer telemetry',
-	title: 'Build Log',
-	live: 'Live',
-	totalCodeTime: 'Total code time',
-	since: 'Since Dec. 2022',
-	hoursUnit: 'hrs',
-	dailyAverage: 'Daily average',
-	coreStack: 'Core stack',
-};
 ---
 
 <main class="landing dark scanline-overlay" data-landing>
@@ -89,30 +78,30 @@ const profile = {
 	<aside class="dev-profile type-mono fade-up" aria-labelledby="dev-profile-title">
 		<header class="dev-profile__header">
 			<div>
-				<span class="eyebrow type-caption">{profile.eyebrow}</span>
-				<h2 id="dev-profile-title">{profile.title}</h2>
+				<span class="eyebrow type-caption">Developer telemetry</span>
+				<h2 id="dev-profile-title">Build Log</h2>
 			</div>
-			<span class="live-status type-caption"><span aria-hidden="true"></span> {profile.live}</span>
+			<span class="live-status type-caption"><span aria-hidden="true"></span> Live</span>
 		</header>
 
 		<section class="code-time" aria-labelledby="code-time-title">
 			<div class="section-label type-caption">
-				<span id="code-time-title">{profile.totalCodeTime}</span>
-				<span>{profile.since}</span>
+				<span id="code-time-title">Total code time</span>
+				<span>Since Dec. 2022</span>
 			</div>
 			<div class="code-time__value" aria-live="polite">
 				<strong data-code-hours>Loading...</strong>
-				<span>{profile.hoursUnit}</span>
+				<span>hrs</span>
 			</div>
 			<div class="code-time__meta">
-				<span>{profile.dailyAverage}</span>
+				<span>Daily average</span>
 				<strong data-daily-average>Loading...</strong>
 			</div>
 		</section>
 
 		<section class="stack-cloud" aria-labelledby="stack-title">
 			<div class="section-label type-caption">
-				<span id="stack-title">{profile.coreStack}</span>
+				<span id="stack-title">Core stack</span>
 			</div>
 			<ul class="stack-cloud__items">
 				{techStack.map(({ icon, label }) => (
