@@ -5,7 +5,7 @@ export const portfolio = {
 		title: '포트폴리오 - ptg.kr',
 		description: '백엔드와 인프라를 설계하고 운영하는 엔지니어 정선우의 포트폴리오입니다.',
 	},
-	navigation: { home: '홈', education: '학력', experience: '경력', projects: '프로젝트', awards: '수상', certifications: '자격증' },
+	navigation: { home: '홈', education: '학력', experience: '경력', projects: '프로젝트', awards: '수상', certifications: '자격증', techStack: '기술 스택' },
 	hero: {
 		eyebrow: 'Backend & DevOps Engineer · Portfolio 2026',
 		intro: '경영과 컴퓨터공학을 공부하며 여러 IT 프로젝트를 경험하고 있는 백엔드 엔지니어',
@@ -115,12 +115,13 @@ export const portfolio = {
 		],
 	},
 	capabilities: {
-		eyebrow: 'Capabilities', title: '제품과 운영을 함께 보는 기술 스택',
+		eyebrow: 'Tech Stack', title: '기술 스택',
+		description: '빠른 응답과 효율적인 자원 활용을 바탕으로,\n안정적으로 확장되는 백엔드와 인프라를 설계합니다.',
 		groups: [
-			{ title: 'Backend', items: ['Go', 'TypeScript', 'Python', 'Fiber', 'Elysia', 'REST API', 'WebSocket'] },
-			{ title: 'Data', items: ['PostgreSQL', 'Redis', 'SQLite', 'Drizzle ORM', 'SQLC', 'LanceDB'] },
-			{ title: 'Infrastructure', items: ['OCI', 'Docker', 'Proxmox', 'Kubernetes', 'Cloudflare', 'Caddy', 'Tailscale'] },
-			{ title: 'Security', items: ['OAuth 2.1', 'OpenID Connect', 'JWT', 'JWKS', 'Passkey', 'AES-GCM'] },
+			{ title: 'Backend Engineering', items: ['Go', 'TypeScript', 'Fiber', 'Bun'] },
+			{ title: 'Infrastructure', items: ['Proxmox', 'OCI', 'Kubernetes', 'Cloudflare'] },
+			{ title: 'Data', items: ['PostgreSQL', 'Memcached', 'S3 Compatible', 'LanceDB'] },
+			{ title: 'Security', items: ['OAuth 2.1', 'OpenID Connect', 'JWT / JWKS', 'PQC / Kyber'] },
 		],
 	},
 	principles: {

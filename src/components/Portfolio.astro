@@ -4,6 +4,7 @@ import CertificationsSection from './portfolio/CertificationsSection.astro';
 import EducationSection from './portfolio/EducationSection.astro';
 import ExperienceSection from './portfolio/ExperienceSection.astro';
 import ProjectsSection from './portfolio/ProjectsSection.astro';
+import TechStackSection from './portfolio/TechStackSection.astro';
 import { buttonVariants } from './ui/button';
 import Navbar from './ui/Navbar.astro';
 import type { Locale } from '../i18n/config';
@@ -23,6 +24,7 @@ const navItems = [
 	{ label: t.navigation.projects, href: '#projects' },
 	{ label: t.navigation.awards, href: '#awards' },
 	{ label: t.navigation.certifications, href: '#certifications' },
+	{ label: t.navigation.techStack, href: '#tech-stack' },
 ];
 const highlightedKeyword = locale === 'ko' ? '문제' : locale === 'en' ? 'problem' : null;
 const contactTitleParts = highlightedKeyword ? t.contact.title.split(highlightedKeyword) : [t.contact.title];
@@ -71,6 +73,7 @@ const contactTitleParts = highlightedKeyword ? t.contact.title.split(highlighted
 	<ProjectsSection projects={t.projects} labels={t.labels} />
 	<AwardsSection awards={t.awards} />
 	<CertificationsSection certifications={t.certifications} />
+	<TechStackSection capabilities={t.capabilities} />
 
 	<footer class="bg-teal-400 px-[clamp(24px,7vw,112px)] pb-8 pt-[84px] text-zinc-950 sm:pt-[110px]">
 		<div class="max-w-[970px]"><span class="type-label">{t.contact.eyebrow}</span><h2 class:list={['my-[22px] whitespace-pre-line text-[clamp(44px,7vw,104px)] leading-[.98] tracking-[-.07em] text-balance', locale === 'ko' ? 'font-bold' : 'font-semibold']}>{contactTitleParts.map((part, index) => (<>{part}{highlightedKeyword && index < contactTitleParts.length - 1 && <span class="inline-block bg-zinc-950 px-[0.06em] text-teal-400">{highlightedKeyword}</span>}</>))}</h2><p class="m-0 max-w-[620px] font-sans text-[17px] leading-[1.6]">{t.contact.description}</p></div>

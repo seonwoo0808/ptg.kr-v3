@@ -5,7 +5,7 @@ export const portfolio = {
 		title: 'Portfolio - ptg.kr',
 		description: "The portfolio of Seonwoo Jeong, a backend and DevOps engineer designing reliable systems.",
 	},
-	navigation: { home: 'Home', education: 'Education', experience: 'Experience', projects: 'Projects', awards: 'Awards', certifications: 'Certifications' },
+	navigation: { home: 'Home', education: 'Education', experience: 'Experience', projects: 'Projects', awards: 'Awards', certifications: 'Certifications', techStack: 'Tech Stack' },
 	hero: {
 		eyebrow: 'Backend & DevOps Engineer · Portfolio 2026',
 		intro: 'Studying business and computer science, I am a backend engineer with experience in various IT projects.',
@@ -115,12 +115,13 @@ export const portfolio = {
 		],
 	},
 	capabilities: {
-		eyebrow: 'Capabilities', title: 'A stack spanning product and operations',
+		eyebrow: 'Tech Stack', title: 'Tech Stack',
+		description: 'I design fast, resource-efficient backend systems\nand infrastructure that scale reliably.',
 		groups: [
-			{ title: 'Backend', items: ['Go', 'TypeScript', 'Python', 'Fiber', 'Elysia', 'REST API', 'WebSocket'] },
-			{ title: 'Data', items: ['PostgreSQL', 'Redis', 'SQLite', 'Drizzle ORM', 'SQLC', 'LanceDB'] },
-			{ title: 'Infrastructure', items: ['OCI', 'Docker', 'Proxmox', 'Kubernetes', 'Cloudflare', 'Caddy', 'Tailscale'] },
-			{ title: 'Security', items: ['OAuth 2.1', 'OpenID Connect', 'JWT', 'JWKS', 'Passkey', 'AES-GCM'] },
+			{ title: 'Backend Engineering', items: ['Go', 'TypeScript', 'Fiber', 'Bun'] },
+			{ title: 'Infrastructure', items: ['Proxmox', 'OCI', 'Kubernetes', 'Cloudflare'] },
+			{ title: 'Data', items: ['PostgreSQL', 'Memcached', 'S3 Compatible', 'LanceDB'] },
+			{ title: 'Security', items: ['OAuth 2.1', 'OpenID Connect', 'JWT / JWKS', 'PQC / Kyber'] },
 		],
 	},
 	principles: {

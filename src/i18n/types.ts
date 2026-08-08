@@ -88,6 +88,7 @@ export interface PortfolioMessages extends SectionMessages {
 		projects: string;
 		awards: string;
 		certifications: string;
+		techStack: string;
 	};
 	hero: {
 		eyebrow: string;
@@ -135,6 +136,7 @@ export interface PortfolioMessages extends SectionMessages {
 	capabilities: {
 		eyebrow: string;
 		title: string;
+		description: string;
 		groups: Array<{ title: string; items: string[] }>;
 	};
 	principles: {

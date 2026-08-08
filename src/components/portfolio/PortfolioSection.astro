@@ -17,7 +17,7 @@ const hasMeta = Astro.slots.has('meta');
 		<header class:list={['mb-14 border-b border-white/10 pb-5', hasMeta && 'flex items-end justify-between gap-6']}>
 			<div>
 				<span class="type-label text-teal-400">{index} · {eyebrow}</span>
-				<h2 id={titleId} class="type-h2 mt-[22px] max-w-[880px]">{title}</h2>
+				<h2 id={titleId} class="type-h2 mt-[22px] max-w-[880px] whitespace-pre-line">{title}</h2>
 			</div>
 			{hasMeta && <slot name="meta" />}
 		</header>
