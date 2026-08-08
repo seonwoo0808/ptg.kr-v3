@@ -24,6 +24,8 @@ const navItems = [
 	{ label: t.navigation.awards, href: '#awards' },
 	{ label: t.navigation.certifications, href: '#certifications' },
 ];
+const highlightedKeyword = locale === 'ko' ? '문제' : locale === 'en' ? 'problem' : null;
+const contactTitleParts = highlightedKeyword ? t.contact.title.split(highlightedKeyword) : [t.contact.title];
 
 ---
 
@@ -71,7 +73,7 @@ const navItems = [
 	<CertificationsSection certifications={t.certifications} />
 
 	<footer class="bg-teal-400 px-[clamp(24px,7vw,112px)] pb-8 pt-[84px] text-zinc-950 sm:pt-[110px]">
-		<div class="max-w-[970px]"><span class="type-label">{t.contact.eyebrow}</span><h2 class:list={['my-[22px] whitespace-pre-line text-[clamp(44px,7vw,104px)] leading-[.98] tracking-[-.07em] text-balance', locale === 'ko' ? 'font-bold' : 'font-semibold']}>{t.contact.title}</h2><p class="m-0 max-w-[620px] font-sans text-[17px] leading-[1.6]">{t.contact.description}</p></div>
+		<div class="max-w-[970px]"><span class="type-label">{t.contact.eyebrow}</span><h2 class:list={['my-[22px] whitespace-pre-line text-[clamp(44px,7vw,104px)] leading-[.98] tracking-[-.07em] text-balance', locale === 'ko' ? 'font-bold' : 'font-semibold']}>{contactTitleParts.map((part, index) => (<>{part}{highlightedKeyword && index < contactTitleParts.length - 1 && <span class="inline-block bg-zinc-950 px-[0.06em] text-teal-400">{highlightedKeyword}</span>}</>))}</h2><p class="m-0 max-w-[620px] font-sans text-[17px] leading-[1.6]">{t.contact.description}</p></div>
 		<div class="my-[55px] mb-[100px] flex flex-col gap-[10px] sm:flex-row">
 			<a class={buttonVariants({ size: 'lg', className: 'h-auto min-w-0 justify-between border border-zinc-950/35 bg-zinc-950 px-[18px] py-4 text-teal-400 no-underline hover:bg-zinc-950 sm:min-w-[190px]' })} href="mailto:me@ptg.kr">{t.contact.email}<span aria-hidden="true">↗</span></a>
 			<a class={buttonVariants({ variant: 'outline', size: 'lg', className: 'h-auto min-w-0 justify-between border-zinc-950/35 bg-transparent px-[18px] py-4 text-zinc-950 no-underline hover:bg-zinc-950 hover:text-teal-400 sm:min-w-[190px]' })} href="https://github.com/seonwoo0808" target="_blank" rel="noreferrer">{t.contact.github}<span aria-hidden="true">↗</span></a>
