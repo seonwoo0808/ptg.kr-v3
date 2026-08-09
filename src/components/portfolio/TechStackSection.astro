@@ -15,14 +15,14 @@ const groups = [
 <PortfolioSection id="tech-stack" index="06" eyebrow="Capabilities" title={capabilities.title} surface>
 	<p class="type-p1 mb-14 max-w-[680px] whitespace-pre-line text-zinc-400 [word-break:keep-all]">{capabilities.description}</p>
 
-	<div class="grid gap-px bg-white/10 md:grid-cols-2">
+	<div class="grid sm:gap-px bg-white/10 md:grid-cols-2">
 		{groups.map((group, index) => (
-			<article class="min-h-[330px] bg-zinc-900 p-7 sm:p-10">
-				<header class="mb-12 flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+			<article class="min-h-[300px] bg-zinc-900 py-8 sm:min-h-[330px] sm:p-8">
+				<header class="mb-9 flex items-center justify-between gap-4 border-b border-white/10 pb-4 sm:mb-12">
 					<h3 class="type-label text-teal-400">{group.title}</h3>
 					<span class="type-caption text-zinc-600" aria-hidden="true">/{String(index + 1).padStart(2, '0')}</span>
 				</header>
-				<ul class="m-0 list-none space-y-3 p-0">
+				<ul class="m-0 list-none space-y-3 pl-4 sm:p-0">
 					{group.items.map((item) => (
 						<li class="type-p1 !font-mono text-zinc-300">{item}</li>
 					))}
